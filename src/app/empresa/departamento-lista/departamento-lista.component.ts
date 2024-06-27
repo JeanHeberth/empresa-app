@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Departamento} from "../../classes/departamento";
-import {DepartamentoService} from "../../servicos/departamento.service";
+import {DepartamentoService} from "../../services/departamento.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 

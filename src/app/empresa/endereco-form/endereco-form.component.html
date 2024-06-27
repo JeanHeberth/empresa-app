@@ -4,7 +4,7 @@
 </ol>
 
 <div class="container">
-  <form #form="ngForm">
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
 
     <div class="row">
       <div class="col-md-6">
@@ -12,6 +12,7 @@
           <label>ID:</label>
           <input type="text" class="form-control"
                  name="id" disabled="true"
+                 [(ngModel)]="endereco.id"
           />
         </div>
       </div>
@@ -19,7 +20,10 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="cep">CEP:</label>
-          <input id="cep" type="text" class="form-control" [(ngModel)]="cep"  [(ngModel)]="endereco.cep" name="cep"
+          <input id="cep" type="text" class="form-control"
+                 name="cep"
+                 [(ngModel)]="cep"
+                 [(ngModel)]="endereco.cep"
                  (input)="onCepChange()"/>
         </div>
       </div>
@@ -29,10 +33,10 @@
         <div class="form-group">
           <label for="logradouro">Logradouro:</label>
           <input id="logradouro" type="text" class="form-control"
-                 [(ngModel)]="buscaCep.logradouro"
                  [(ngModel)]="endereco.logradouro"
-                 [readonly]="isReadonly"
+                 [(ngModel)]="buscaCep.logradouro"
                  name="logradouro"/>
+          <!--                 [readonly]="isReadonly"-->
         </div>
       </div>
 
@@ -42,10 +46,10 @@
           <input id="bairro"
                  type="text"
                  class="form-control"
-                 [(ngModel)]="buscaCep.bairro"
                  [(ngModel)]="endereco.bairro"
-                 [readonly]="isReadonly"
+                 [(ngModel)]="buscaCep.bairro"
                  name="bairro"/>
+          <!--                 [readonly]="isReadonly"-->
         </div>
       </div>
     </div>
@@ -57,9 +61,10 @@
         <div class="form-group">
           <label for="estado">Estado: *</label>
           <input id="estado"
-                 type="text" class="form-control" name="pais" [ngModel]="buscaCep.estado"
+                 type="text" class="form-control" name="pais"
                  [(ngModel)]="endereco.estado"
-                 [readonly]="isReadonly"/>
+                 [ngModel]="buscaCep.estado"
+          />
 
         </div>
       </div>
@@ -68,9 +73,9 @@
         <div class="form-group">
           <label for="cidade">Cidade: *</label>
           <input id="cidade" type="text" class="form-control" name="cidade"
-                 [ngModel]="buscaCep.cidade"
+                 [ngModel]="endereco.cidade"
                  [(ngModel)]="endereco.cidade"
-                 [readonly]="isReadonly"/>
+                />
         </div>
       </div>
 

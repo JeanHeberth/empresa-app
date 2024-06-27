@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Endereco} from '../../classes/endereco';
-import {EnderecoService} from "../../servicos/endereco.service";
+import {EnderecoService} from "../../services/endereco.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -24,6 +24,8 @@ export class EnderecoFormComponent implements OnInit {
   // @ts-ignore
   enderecoForm: FormGroup = new FormGroup({});
   success: boolean = false;
+  // @ts-ignore
+  errors: null;
   // @ts-ignore
   id: number;
 
@@ -55,11 +57,18 @@ export class EnderecoFormComponent implements OnInit {
       this.isReadonly = false;
       return;
     }
-    // if (this.cep.length === 8) {
-      this.buscaCep = await this.enderecoService.buscarCep(this.cep).toPromise();
-      this.isReadonly = true;
+    const data = await this.enderecoService.buscarCep(this.cep).toPromise();
+    if (data) {
+      this.buscaCep = {
+        logradouro: data.logradouro,
+        bairro: data.bairro,
+        cidade: data.cidade,
+        estado: data.uf
+      };
+      this.isReadonly = true;  // Bloqueia os campos após preencher
     }
-  // }
+
+  }
 
   ngOnInit() {
 
@@ -79,6 +88,17 @@ export class EnderecoFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.enderecoService
+      .salvarEndereco(this.endereco)
+      .subscribe(response => {
+          this.success = true;
+          this.errors = null;
+          this.endereco = response;
+        }, errorResponse => {
+          this.errors = errorResponse.error.errors;
+          console.log(errorResponse.error.errors);
+        }
+      );
   }
 
 
