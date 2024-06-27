@@ -1,0 +1,107 @@
+<h1 class="mt-4">Cadastro de endereços</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Endereços</li>
+</ol>
+
+<div class="container">
+  <form #form="ngForm">
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>ID:</label>
+          <input type="text" class="form-control"
+                 name="id" disabled="true"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cep">CEP:</label>
+          <input id="cep" type="text" class="form-control" [(ngModel)]="cep"  [(ngModel)]="endereco.cep" name="cep"
+                 (blur)="onCepChange()"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="logradouro">Logradouro:</label>
+          <input id="logradouro" type="text" class="form-control" [(ngModel)]="buscaCep.logradouro"
+                 [(ngModel)]="endereco.logradouro"
+                 name="logradouro"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="bairro">Bairro:</label>
+          <input id="bairro" type="text" class="form-control" [(ngModel)]="buscaCep.bairro"
+                 [(ngModel)]="endereco.bairro"
+                 name="bairro"/>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="estado">Estado: *</label>
+          <input id="estado"
+                 type="text" class="form-control" name="pais" [ngModel]="buscaCep.estado"
+                 [(ngModel)]="endereco.estado"/>
+
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cidade">Cidade: *</label>
+          <input id="cidade" type="text" class="form-control" name="cidade"
+                 [ngModel]="buscaCep.cidade"
+                 [(ngModel)]="endereco.cidade">
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="complemento">Complemento:</label>
+            <input id="complemento" type="text" class="form-control" [(ngModel)]="endereco.complemento"
+                   name="complemento"/>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="casa">Casa:</label>
+            <input id="casa" type="text" class="form-control" [(ngModel)]="endereco.casa"
+                   name="casa"/>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-success">
+            <i class="fa fa-save"></i> Salvar
+          </button>
+
+          <button type="submit" class="btn btn-primary ml-1">
+            <i class="fa-solid fa-arrows-rotate"></i> Atualizar
+          </button>
+
+          <button type="button" class="btn btn-danger ml-1" (click)="voltaParaPaginaDeListagem()">
+            <i class="fa-solid fa-circle-left"></i> Voltar
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,77 @@
+<h1 class="mt-4">Cep</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Cep</li>
+</ol>
+
+<div class="container">
+  <form #form="ngForm">
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>ID:</label>
+          <input type="text" class="form-control"
+                 name="id" disabled="true"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cep">CEP:</label>
+          <input id="cep" type="text" class="form-control" [(ngModel)]="cep" name="cep"
+                 (blur)="onCepChange()"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="logradouro">Logradouro:</label>
+          <input id="logradouro" type="text" class="form-control" [(ngModel)]="buscaCep.logradouro"
+                 name="logradouro"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="bairro">Bairro:</label>
+          <input id="bairro" type="text" class="form-control" [(ngModel)]="buscaCep.bairro"
+                 name="bairro"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="estado">Estado: *</label>
+          <input id="estado"
+                 type="text" class="form-control" name="pais" [ngModel]="buscaCep.estado"/>
+
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cidade">Cidade: *</label>
+          <input id="cidade" type="text" class="form-control" name="cidade"
+                 [ngModel]="buscaCep.cidade">
+        </div>
+      </div>
+    </div>
+
+
+    <!--    <div class="col-md-6">-->
+    <!--      <div class="form-group">-->
+    <!--        <label for="cidade">Cidade:</label>-->
+    <!--        <input id="cidade" type="text" class="form-control" [(ngModel)]="endereco.cidade"-->
+    <!--               name="cidade"/>-->
+    <!--      </div>-->
+    <!--      <label for="estado">Estado:</label>-->
+    <!--      <input id="estado" type="text" class="form-control" [(ngModel)]="endereco.estado"-->
+    <!--             name="estado"/>-->
+    <!--    </div>-->
+  </form>
+
+</div>

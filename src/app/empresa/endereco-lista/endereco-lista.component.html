@@ -1,0 +1,111 @@
+<h1 class="mt-4">Listas de endereços</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">endereços</li>
+</ol>
+
+<div class="container">
+
+  <!--  <div class="row">-->
+  <!--    <div class="col-md-12">-->
+  <!--      <div  class="alert alert-success" role="alert">-->
+  <!--      </div>-->
+
+  <!--      <div class="alert alert-danger" role="alert" >-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+  <div class="row">
+
+    <div class="col-md-2">
+      <button class="btn btn-success" (click)="novoCadastro()">
+        <i class="fa-solid fa-square-plus" ></i> Novo
+      </button>
+    </div>
+  </div>
+
+
+
+  <br/>
+
+
+
+
+  <div class="">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cep</th>
+          <th>País</th>
+          <th>Cidade</th>
+          <th>Rua</th>
+          <th>UF</th>
+          <th>Bairro</th>
+          <th>Complemento</th>
+          <th>Casa</th>
+          <th>Estado</th>
+        </tr>
+        </thead>
+
+        <tbody class="">
+        <tr *ngFor="let endereco of enderecos">
+          <td>{{ endereco.id }}</td>
+          <td>{{ endereco.cep }}</td>
+          <td>{{ endereco.pais }}</td>
+          <td>{{ endereco.cidade }}</td>
+          <td>{{ endereco.rua }}</td>
+          <td>{{ endereco.uf }}</td>
+          <td>{{ endereco.bairro }}</td>
+          <td>{{ endereco.complemento }}</td>
+          <td>{{ endereco.casa }}</td>
+          <td>{{ endereco.estado }}</td>
+          <td>
+
+
+            <button class="btn btn-warning" routerLink="/endereco-form/{{ endereco.id }}">
+              <i class="fa-solid fa-square-pen"></i>
+            </button>
+
+<!--            <button class="btn btn-danger ml-1" (click)="preparaDelecao(endereco)"-->
+<!--                    data-bs-toggle="modal"-->
+<!--                    data-bs-target="#modalDelecao">-->
+<!--              <i class="fa-solid fa-trash-can"></i>-->
+<!--            </button>-->
+          </td>
+
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Modal de exclusão -->
+  <div class="modal fade" id="modalDelecao" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4>Confirmação</h4>
+        </div>
+
+        <div class="modal-body">
+          Deseja realmente apagar o endereço
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+</div>
