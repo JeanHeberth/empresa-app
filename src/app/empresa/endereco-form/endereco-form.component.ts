@@ -28,6 +28,7 @@ export class EnderecoFormComponent implements OnInit {
   id: number;
 
   cep: string = '';
+  isReadonly: boolean = false;
   buscaCep: any = {
     logradouro: '',
     bairro: '',
@@ -44,10 +45,21 @@ export class EnderecoFormComponent implements OnInit {
   }
 
   async onCepChange() {
-    if (this.cep) {
-      this.buscaCep = await this.enderecoService.buscarCep(this.cep).toPromise();
+    if (!this.cep) {
+      this.buscaCep = {
+        logradouro: '',
+        bairro: '',
+        cidade: '',
+        estado: ''
+      };
+      this.isReadonly = false;
+      return;
     }
-  }
+    // if (this.cep.length === 8) {
+      this.buscaCep = await this.enderecoService.buscarCep(this.cep).toPromise();
+      this.isReadonly = true;
+    }
+  // }
 
   ngOnInit() {
 

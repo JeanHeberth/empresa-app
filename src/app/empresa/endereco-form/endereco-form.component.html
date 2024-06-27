@@ -20,7 +20,7 @@
         <div class="form-group">
           <label for="cep">CEP:</label>
           <input id="cep" type="text" class="form-control" [(ngModel)]="cep"  [(ngModel)]="endereco.cep" name="cep"
-                 (blur)="onCepChange()"/>
+                 (input)="onCepChange()"/>
         </div>
       </div>
     </div>
@@ -28,8 +28,10 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="logradouro">Logradouro:</label>
-          <input id="logradouro" type="text" class="form-control" [(ngModel)]="buscaCep.logradouro"
+          <input id="logradouro" type="text" class="form-control"
+                 [(ngModel)]="buscaCep.logradouro"
                  [(ngModel)]="endereco.logradouro"
+                 [readonly]="isReadonly"
                  name="logradouro"/>
         </div>
       </div>
@@ -37,8 +39,12 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="bairro">Bairro:</label>
-          <input id="bairro" type="text" class="form-control" [(ngModel)]="buscaCep.bairro"
+          <input id="bairro"
+                 type="text"
+                 class="form-control"
+                 [(ngModel)]="buscaCep.bairro"
                  [(ngModel)]="endereco.bairro"
+                 [readonly]="isReadonly"
                  name="bairro"/>
         </div>
       </div>
@@ -52,7 +58,8 @@
           <label for="estado">Estado: *</label>
           <input id="estado"
                  type="text" class="form-control" name="pais" [ngModel]="buscaCep.estado"
-                 [(ngModel)]="endereco.estado"/>
+                 [(ngModel)]="endereco.estado"
+                 [readonly]="isReadonly"/>
 
         </div>
       </div>
@@ -62,7 +69,8 @@
           <label for="cidade">Cidade: *</label>
           <input id="cidade" type="text" class="form-control" name="cidade"
                  [ngModel]="buscaCep.cidade"
-                 [(ngModel)]="endereco.cidade">
+                 [(ngModel)]="endereco.cidade"
+                 [readonly]="isReadonly"/>
         </div>
       </div>
 
