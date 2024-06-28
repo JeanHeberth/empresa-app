@@ -26,7 +26,6 @@ export class EnderecoService {
 
   }
 
-
   buscarCep(cep: string): Observable<any> {
     return this.http.get(`https://viacep.com.br/ws/${cep}/json/`).pipe(
       map((data: any) => ({
