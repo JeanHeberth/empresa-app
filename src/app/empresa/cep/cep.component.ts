@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {EnderecoService} from "../../servicos/endereco.service";
+import {EnderecoService} from "../../services/endereco.service";
 import {CepService} from "../../servicos/cep.service";
 
 @Component({

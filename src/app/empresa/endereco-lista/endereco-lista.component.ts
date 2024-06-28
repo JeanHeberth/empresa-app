@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
-import {EnderecoService} from "../../servicos/endereco.service";
+import {EnderecoService} from "../../services/endereco.service";
 import {Endereco} from "../../classes/endereco";
 import {Departamento} from "../../classes/departamento";
 

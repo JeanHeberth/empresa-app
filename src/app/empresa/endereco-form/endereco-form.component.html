@@ -4,7 +4,7 @@
 </ol>
 
 <div class="container">
-  <form #form="ngForm">
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
 
     <div class="row">
       <div class="col-md-6">
@@ -12,6 +12,7 @@
           <label>ID:</label>
           <input type="text" class="form-control"
                  name="id" disabled="true"
+                 [(ngModel)]="endereco.id"
           />
         </div>
       </div>
@@ -19,8 +20,10 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="cep">CEP:</label>
-          <input id="cep" type="text" class="form-control" [(ngModel)]="cep"  [(ngModel)]="endereco.cep" name="cep"
-                 (input)="onCepChange()"/>
+          <input id="cep" type="text"
+                 class="form-control"
+                 [(ngModel)]="endereco.cep"
+                 name="cep" (input)="onCepChange()"/>
         </div>
       </div>
     </div>
@@ -29,9 +32,7 @@
         <div class="form-group">
           <label for="logradouro">Logradouro:</label>
           <input id="logradouro" type="text" class="form-control"
-                 [(ngModel)]="buscaCep.logradouro"
                  [(ngModel)]="endereco.logradouro"
-                 [readonly]="isReadonly"
                  name="logradouro"/>
         </div>
       </div>
@@ -42,14 +43,11 @@
           <input id="bairro"
                  type="text"
                  class="form-control"
-                 [(ngModel)]="buscaCep.bairro"
                  [(ngModel)]="endereco.bairro"
-                 [readonly]="isReadonly"
                  name="bairro"/>
         </div>
       </div>
     </div>
-
 
 
     <div class="row">
@@ -57,9 +55,10 @@
         <div class="form-group">
           <label for="estado">Estado: *</label>
           <input id="estado"
-                 type="text" class="form-control" name="pais" [ngModel]="buscaCep.estado"
-                 [(ngModel)]="endereco.estado"
-                 [readonly]="isReadonly"/>
+                 type="text"
+                 class="form-control"
+                 name="estado"
+                 [(ngModel)]="endereco.estado"/>
 
         </div>
       </div>
@@ -67,10 +66,11 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="cidade">Cidade: *</label>
-          <input id="cidade" type="text" class="form-control" name="cidade"
-                 [ngModel]="buscaCep.cidade"
-                 [(ngModel)]="endereco.cidade"
-                 [readonly]="isReadonly"/>
+          <input id="cidade"
+                 type="text"
+                 class="form-control"
+                 name="cidade"
+                 [(ngModel)]="endereco.cidade"/>
         </div>
       </div>
 
@@ -79,7 +79,10 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="complemento">Complemento:</label>
-            <input id="complemento" type="text" class="form-control" [(ngModel)]="endereco.complemento"
+            <input id="complemento"
+                   type="text"
+                   class="form-control"
+                   [(ngModel)]="endereco.complemento"
                    name="complemento"/>
           </div>
         </div>
@@ -87,7 +90,10 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="casa">Casa:</label>
-            <input id="casa" type="text" class="form-control" [(ngModel)]="endereco.casa"
+            <input id="casa"
+                   type="text"
+                   class="form-control"
+                   [(ngModel)]="endereco.casa"
                    name="casa"/>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import {Component, OnInit, inject} from '@angular/core';
 import {Departamento} from "../../classes/departamento";
 import {FormsModule} from "@angular/forms";
-import {DepartamentoService} from "../../servicos/departamento.service";
+import {DepartamentoService} from "../../services/departamento.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Observable} from "rxjs";

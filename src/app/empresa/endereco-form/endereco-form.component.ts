@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Endereco} from '../../classes/endereco';
-import {EnderecoService} from "../../servicos/endereco.service";
+import {EnderecoService} from "../../services/endereco.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
-import {CepService} from "../../servicos/cep.service";
 
 @Component({
   selector: 'app-endereco-form',
@@ -22,44 +21,66 @@ import {CepService} from "../../servicos/cep.service";
 export class EnderecoFormComponent implements OnInit {
   endereco: Endereco = new Endereco();
   // @ts-ignore
-  enderecoForm: FormGroup = new FormGroup({});
   success: boolean = false;
   // @ts-ignore
-  id: number;
+  errors: null;
+  // @ts-ignore
+  id: number
 
-  cep: string = '';
-  isReadonly: boolean = false;
-  buscaCep: any = {
+  // @ts-ignore
+  endereco: any = {
+    id: '',
+    cep: '',
     logradouro: '',
     bairro: '',
     cidade: '',
-    estado: ''
+    estado: '',
+    complemento: '',
+    casa: ''
   };
-
+  isReadonly: boolean = false;
 
   constructor(private enderecoService: EnderecoService,
               private router: Router,
               private activatedRoute: ActivatedRoute,) {
     this.endereco = new Endereco();
-
   }
 
+
   async onCepChange() {
-    if (!this.cep) {
-      this.buscaCep = {
-        logradouro: '',
-        bairro: '',
-        cidade: '',
-        estado: ''
-      };
+    if (!this.endereco.cep) {
+      this.clearEnderecoFields();
       this.isReadonly = false;
       return;
     }
-    // if (this.cep.length === 8) {
-      this.buscaCep = await this.enderecoService.buscarCep(this.cep).toPromise();
-      this.isReadonly = true;
+
+    if (this.endereco.cep.length === 8) {  // Verifica se o CEP tem 8 caracteres antes de fazer a busca
+      try {
+        const data = await this.enderecoService.buscarCep(this.endereco.cep).toPromise();
+        if (data) {
+          this.endereco.logradouro = data.logradouro;
+          this.endereco.bairro = data.bairro;
+          this.endereco.cidade = data.cidade;
+          this.endereco.estado = data.estado;
+          this.isReadonly = true;  // Bloqueia os campos após preencher
+        }
+      } catch (error) {
+        console.error('Erro ao buscar o CEP:', error);
+        // Tratar erro caso a busca do CEP falhe
+      }
     }
-  // }
+  }
+
+  clearEnderecoFields() {
+    this.endereco.cep = '';
+    this.endereco.logradouro = '';
+    this.endereco.bairro = '';
+    this.endereco.cidade = '';
+    this.endereco.estado = '';
+    this.endereco.complemento = '';
+    this.endereco.casa = '';
+  }
+
 
   ngOnInit() {
 
@@ -79,6 +100,18 @@ export class EnderecoFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.enderecoService
+      .salvarEndereco(this.endereco)
+      .subscribe(response => {
+          this.success = true;
+          this.errors = null;
+          this.endereco = response;
+          this.clearEnderecoFields()
+        }, errorResponse => {
+          this.errors = errorResponse.error.errors;
+          console.log(errorResponse.error.errors);
+        }
+      );
   }
 
 

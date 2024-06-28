@@ -12,6 +12,11 @@ export class EnderecoService {
   constructor(endereco: Endereco, private http: HttpClient) {
   }
 
+  salvarEndereco(endereco: Endereco): Observable<Endereco> {
+    // @ts-ignore
+    return this.http.post('http://localhost:8088/api/endereco', endereco);
+  }
+
   listarEnderecos(): Observable<Endereco[]> {
     return this.http.get<Endereco[]>('http://localhost:8088/api/endereco');
   }
@@ -20,7 +25,6 @@ export class EnderecoService {
     return this.http.get<Endereco>('http://localhost:8088/api/endereco/' + id);
 
   }
-
 
   buscarCep(cep: string): Observable<any> {
     return this.http.get(`https://viacep.com.br/ws/${cep}/json/`).pipe(

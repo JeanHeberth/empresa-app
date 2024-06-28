@@ -19,16 +19,13 @@
 
     <div class="col-md-2">
       <button class="btn btn-success" (click)="novoCadastro()">
-        <i class="fa-solid fa-square-plus" ></i> Novo
+        <i class="fa-solid fa-square-plus"></i> Novo
       </button>
     </div>
   </div>
 
 
-
   <br/>
-
-
 
 
   <div class="">
@@ -38,14 +35,12 @@
         <tr>
           <th>ID</th>
           <th>Cep</th>
-          <th>País</th>
-          <th>Cidade</th>
-          <th>Rua</th>
-          <th>UF</th>
+          <th>Logradouro</th>
           <th>Bairro</th>
+          <th>Estado</th>
+          <th>Cidade</th>
           <th>Complemento</th>
           <th>Casa</th>
-          <th>Estado</th>
         </tr>
         </thead>
 
@@ -53,14 +48,12 @@
         <tr *ngFor="let endereco of enderecos">
           <td>{{ endereco.id }}</td>
           <td>{{ endereco.cep }}</td>
-          <td>{{ endereco.pais }}</td>
-          <td>{{ endereco.cidade }}</td>
-          <td>{{ endereco.rua }}</td>
-          <td>{{ endereco.uf }}</td>
+          <td>{{ endereco.logradouro }}</td>
           <td>{{ endereco.bairro }}</td>
+          <td>{{ endereco.estado }}</td>
+          <td>{{ endereco.cidade }}</td>
           <td>{{ endereco.complemento }}</td>
           <td>{{ endereco.casa }}</td>
-          <td>{{ endereco.estado }}</td>
           <td>
 
 
@@ -68,11 +61,11 @@
               <i class="fa-solid fa-square-pen"></i>
             </button>
 
-<!--            <button class="btn btn-danger ml-1" (click)="preparaDelecao(endereco)"-->
-<!--                    data-bs-toggle="modal"-->
-<!--                    data-bs-target="#modalDelecao">-->
-<!--              <i class="fa-solid fa-trash-can"></i>-->
-<!--            </button>-->
+            <!--            <button class="btn btn-danger ml-1" (click)="preparaDelecao(endereco)"-->
+            <!--                    data-bs-toggle="modal"-->
+            <!--                    data-bs-target="#modalDelecao">-->
+            <!--              <i class="fa-solid fa-trash-can"></i>-->
+            <!--            </button>-->
           </td>
 
 
