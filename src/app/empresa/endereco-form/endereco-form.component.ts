@@ -3,7 +3,7 @@ import {Endereco} from '../../classes/endereco';
 import {EnderecoService} from "../../services/endereco.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormGroup, FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
@@ -99,7 +99,7 @@ export class EnderecoFormComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     this.enderecoService
       .salvarEndereco(this.endereco)
       .subscribe(response => {
@@ -107,6 +107,8 @@ export class EnderecoFormComponent implements OnInit {
           this.errors = null;
           this.endereco = response;
           this.clearEnderecoFields()
+          form.resetForm();
+
         }, errorResponse => {
           this.errors = errorResponse.error.errors;
           console.log(errorResponse.error.errors);

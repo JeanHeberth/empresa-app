@@ -4,16 +4,17 @@
 </ol>
 
 <div class="container">
-  <form #form="ngForm" (ngSubmit)="onSubmit()">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
 
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label>ID:</label>
+          <label for="id">ID:</label>
           <input type="text" class="form-control"
                  name="id" disabled="true"
-                 [(ngModel)]="endereco.id"
-          />
+                 id="id"
+                 [(ngModel)]="endereco.id"/>
+
         </div>
       </div>
 
@@ -23,7 +24,13 @@
           <input id="cep" type="text"
                  class="form-control"
                  [(ngModel)]="endereco.cep"
-                 name="cep" (input)="onCepChange()"/>
+                 name="cep" (input)="onCepChange()" required/>
+          <div>
+            <small class="text-danger"
+                   *ngIf="form.submitted && !endereco.cep">CEP obrigatório</small>
+
+          </div>
+
         </div>
       </div>
     </div>
