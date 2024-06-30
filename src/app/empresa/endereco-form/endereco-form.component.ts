@@ -3,7 +3,7 @@ import {Endereco} from '../../classes/endereco';
 import {EnderecoService} from "../../services/endereco.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {FormGroup, FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
@@ -108,6 +108,15 @@ export class EnderecoFormComponent implements OnInit {
           this.endereco = response;
           this.clearEnderecoFields()
           form.resetForm();
+
+          // Exibir a mensagem de sucesso
+          this.success = true;
+
+          // Ocultar a mensagem de sucesso após 3 segundos
+          setTimeout(() => {
+            this.success = false;
+          }, 1500);
+
 
         }, errorResponse => {
           this.errors = errorResponse.error.errors;
