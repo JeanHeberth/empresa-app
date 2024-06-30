@@ -90,7 +90,13 @@
                    type="text"
                    class="form-control"
                    [(ngModel)]="endereco.complemento"
-                   name="complemento"/>
+                   name="complemento"
+                   />
+            <div>
+              <small class="text-danger"
+                     *ngIf="form.submitted && !endereco.complemento">Complemento obrigatório</small>
+
+            </div>
           </div>
         </div>
 
@@ -101,7 +107,12 @@
                    type="text"
                    class="form-control"
                    [(ngModel)]="endereco.casa"
-                   name="casa"/>
+                   name="casa" [required]="true"/>
+            <div>
+              <small class="text-danger"
+                     *ngIf="form.submitted && !endereco.casa">Casa obrigatória</small>
+
+            </div>
           </div>
         </div>
       </div>
