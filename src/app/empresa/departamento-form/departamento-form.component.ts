@@ -1,8 +1,8 @@
 import {Component, OnInit, inject} from '@angular/core';
 import {Departamento} from "../../classes/departamento";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, NgForm} from "@angular/forms";
 import {DepartamentoService} from "../../services/departamento.service";
-import {NgForOf, NgIf} from "@angular/common";
+import {NgFor, NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Observable} from "rxjs";
 
@@ -44,8 +44,18 @@ export class DepartamentoFormComponent implements OnInit {
     })
   }
 
+  clearDepartamentoFields() {
+    this.departamento.nome = '';
+    // @ts-ignore
+    this.departamento.dataCadastro = '';
+    // @ts-ignore
+    this.departamento.numero = '';
 
-  onSubmit() {
+  }
+
+
+
+  onSubmit(form: NgForm) {
     if (this.id) {
       this.departamentoService
         .atualizarDepartamento(this.departamento)
@@ -65,11 +75,19 @@ export class DepartamentoFormComponent implements OnInit {
             this.success = true;
             this.errors = null;
             this.departamento = response;
+            this.clearDepartamentoFields()
+          form.resetForm();
+
           }, errorResponse => {
             this.errors = errorResponse.error.errors;
             console.log(errorResponse.error.errors);
           }
         );
+
+      // Ocultar a mensagem de sucesso após 3 segundos
+      setTimeout(() => {
+        this.success = false;
+      }, 1500);
     }
   }
 
