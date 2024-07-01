@@ -37,6 +37,8 @@
         </div>
       </div>
     </div>
+
+
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -83,6 +85,7 @@
                  [(ngModel)]="endereco.cidade"/>
         </div>
       </div>
+    </div>
 
 
       <div class="row">
@@ -95,11 +98,6 @@
                    [(ngModel)]="endereco.complemento"
                    name="complemento"
                    />
-            <div>
-              <small class="text-danger"
-                     *ngIf="form.submitted && !endereco.complemento">Complemento obrigatório</small>
-
-            </div>
           </div>
         </div>
 
@@ -115,9 +113,9 @@
               <small class="text-danger"
                      *ngIf="form.submitted && !endereco.casa">Casa obrigatória</small>
 
-            </div>
           </div>
         </div>
+      </div>
       </div>
 
 
@@ -137,6 +135,5 @@
 
         </div>
       </div>
-    </div>
   </form>
 </div>
