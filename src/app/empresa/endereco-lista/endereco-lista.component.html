@@ -5,15 +5,15 @@
 
 <div class="container">
 
-  <!--  <div class="row">-->
-  <!--    <div class="col-md-12">-->
-  <!--      <div  class="alert alert-success" role="alert">-->
-  <!--      </div>-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-12">-->
+<!--        <div  class="alert alert-success" role="alert">-->
+<!--        </div>-->
 
-  <!--      <div class="alert alert-danger" role="alert" >-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
+<!--        <div class="alert alert-danger" role="alert" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
   <div class="row">
 
@@ -40,7 +40,7 @@
           <th>Estado</th>
           <th>Cidade</th>
           <th>Complemento</th>
-          <th>Casa</th>
+          <th required>Casa</th>
         </tr>
         </thead>
 
@@ -61,11 +61,13 @@
               <i class="fa-solid fa-square-pen"></i>
             </button>
 
-            <!--            <button class="btn btn-danger ml-1" (click)="preparaDelecao(endereco)"-->
-            <!--                    data-bs-toggle="modal"-->
-            <!--                    data-bs-target="#modalDelecao">-->
-            <!--              <i class="fa-solid fa-trash-can"></i>-->
-            <!--            </button>-->
+            <button class="btn btn-danger ml-1 col-md-6"
+
+                    (click)="preparaDelecao(endereco)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalDelecao">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
           </td>
 
 
@@ -90,7 +92,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmar</button>
+          <button type="button" class="btn btn-success" (click)="deletarEndereco()" data-bs-dismiss="modal">Confirmar</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>
 

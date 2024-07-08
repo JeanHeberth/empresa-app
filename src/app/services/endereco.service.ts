@@ -26,6 +26,15 @@ export class EnderecoService {
 
   }
 
+  atualizarEndereco(endereco: Endereco): Observable<Endereco> {
+    // @ts-ignore
+    return this.http.put('http://localhost:8088/api/endereco/' + endereco.id, endereco);
+  }
+
+  excluirEndereco(id: number): Observable<void> {
+    return this.http.delete<void>('http://localhost:8088/api/endereco/' + id);
+  }
+
   buscarCep(cep: string): Observable<any> {
     return this.http.get(`https://viacep.com.br/ws/${cep}/json/`).pipe(
       map((data: any) => ({

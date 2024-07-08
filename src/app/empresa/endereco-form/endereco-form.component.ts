@@ -3,7 +3,7 @@ import {Endereco} from '../../classes/endereco';
 import {EnderecoService} from "../../services/endereco.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import { FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
@@ -25,7 +25,7 @@ export class EnderecoFormComponent implements OnInit {
   // @ts-ignore
   errors: null;
   // @ts-ignore
-  id: number
+  id: number;
 
   // @ts-ignore
   endereco: any = {
@@ -100,31 +100,45 @@ export class EnderecoFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.enderecoService
-      .salvarEndereco(this.endereco)
-      .subscribe(response => {
-          this.success = true;
-          this.errors = null;
-          this.endereco = response;
-          this.clearEnderecoFields()
-          form.resetForm();
+    if (this.id) {
+      this.enderecoService
+        .atualizarEndereco(this.endereco)
+        .subscribe(response => {
+            this.success = true;
+            this.errors = null;
+            this.endereco = response;
+          },errorResponse => {
+            //@ts-ignore
+            this.errors = ['Erro ao atualizar o Endereco.']
+            console.log(errorResponse.error.errors);
+          }
+        );
+    } else {
+      this.enderecoService
+        .salvarEndereco(this.endereco)
+        .subscribe(response => {
+            this.success = true;
+            this.errors = null;
+            this.endereco = response;
+            this.clearEnderecoFields()
+            form.resetForm();
 
-          // Exibir a mensagem de sucesso
-          this.success = true;
+            // Exibir a mensagem de sucesso
+            this.success = true;
 
-          // Ocultar a mensagem de sucesso após 3 segundos
-          setTimeout(() => {
-            this.success = false;
-          }, 1500);
+            // Ocultar a mensagem de sucesso após 3 segundos
+            setTimeout(() => {
+              this.success = false;
+            }, 1000);
 
 
-        }, errorResponse => {
-          this.errors = errorResponse.error.errors;
-          console.log(errorResponse.error.errors);
-        }
-      );
+          }, errorResponse => {
+            this.errors = errorResponse.error.errors;
+            console.log(errorResponse.error.errors);
+          }
+        );
+    }
   }
-
 
   voltaParaPaginaDeListagem() {
     this.success = false;

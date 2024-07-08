@@ -1,4 +1,4 @@
-export class Endereco{
+export class  Endereco{
   // @ts-ignore
   id: number;
   // @ts-ignore
