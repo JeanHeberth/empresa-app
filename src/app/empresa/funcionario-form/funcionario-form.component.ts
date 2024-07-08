@@ -51,24 +51,39 @@ export class FuncionarioFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.funcionarioService
-      .salvarFuncionario(this.funcionario)
-      .subscribe(response => {
-          this.success = true;
-          this.errors = null;
-          this.funcionario = response;
-          form.resetForm();
-          setTimeout(() => {
-            this.success = false;
-          }, 1000);
+    if (this.id) {
+      this.funcionarioService
+        .atualizarFuncionario(this.funcionario)
+        .subscribe(response => {
+            this.success = true;
+            this.errors = null;
+            this.funcionario = response;
+          }, errorResponse => {
+            //@ts-ignore
+            this.errors = ['Erro ao atualizar o Funcionario.']
+            console.log(errorResponse.error.errors);
+          }
+        );
+    } else {
+      this.funcionarioService
+        .salvarFuncionario(this.funcionario)
+        .subscribe(response => {
+            this.success = true;
+            this.errors = null;
+            this.funcionario = response;
+            form.resetForm();
+            setTimeout(() => {
+              this.success = false;
+            }, 1000);
 
-          // Exibir a mensagem de sucesso
-          this.success = true;
-        }, errorResponse => {
-          this.errors = errorResponse.error.errors;
-          console.log(errorResponse.error.errors);
-        }
-      );
+            // Exibir a mensagem de sucesso
+            this.success = true;
+          }, errorResponse => {
+            this.errors = errorResponse.error.errors;
+            console.log(errorResponse.error.errors);
+          }
+        );
+    }
   }
 
   voltaParaPaginaDeListagem() {
