@@ -3,7 +3,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {EnderecoService} from "../../services/endereco.service";
 import {Endereco} from "../../classes/endereco";
-import {Departamento} from "../../classes/departamento";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-endereco-lista',
@@ -11,13 +11,19 @@ import {Departamento} from "../../classes/departamento";
   imports: [
     NgForOf,
     NgIf,
-    RouterLink
+    RouterLink,
+    FormsModule
   ],
   templateUrl: './endereco-lista.component.html',
   styleUrl: './endereco-lista.component.css'
 })
 export class EnderecoListaComponent implements OnInit {
   enderecos: Array<Endereco> = [];
+
+  // @ts-ignore
+  mensagemSucesso: string;
+  // @ts-ignore
+  mensagemErro: string;
 
   //@ts-ignore
   enderecoSelecionado: Endereco;
@@ -38,6 +44,17 @@ export class EnderecoListaComponent implements OnInit {
 
   preparaDelecao(endereco: Endereco) {
     this.enderecoSelecionado = endereco;
+  }
+
+  deletarEndereco() {
+    this.enderecoService
+      .excluirEndereco(this.enderecoSelecionado.id)
+      .subscribe(() => {
+          this.mensagemSucesso = 'Endereco deletado com sucesso'
+          this.ngOnInit();
+        },
+        error => this.mensagemErro = 'Ocorreu um erro ao deletar o Endereco'
+      )
   }
 }
 

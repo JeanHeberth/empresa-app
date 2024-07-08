@@ -16,7 +16,7 @@ import {Observable} from "rxjs";
 })
 export class DepartamentoFormComponent implements OnInit {
 
-  departamento: Departamento = new Departamento();
+  departamento: Departamento;
   success: boolean = false;
   // @ts-ignore
   errors: null;

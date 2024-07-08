@@ -44,7 +44,7 @@ export class DepartamentoListaComponent implements OnInit {
     this.departamentoSelecionado = departamento;
   }
 
-  deletarCliente() {
+  deletarDepartamento() {
     this.departamentoService
       .deletarDepartamento(this.departamentoSelecionado)
       .subscribe(response => {

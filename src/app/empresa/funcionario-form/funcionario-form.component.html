@@ -1,0 +1,125 @@
+<h1 class="mt-4">Cadastro de funcionário</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Funcionário</li>
+</ol>
+<div class="container">
+  <form>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text"
+                 class="form-control"
+                 id="nome"
+                 name="nome"
+                 [(ngModel)]="funcionario.nome"
+                 placeholder="Nome" required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text"
+                 class="form-control"
+                 id="email"
+                 name="email"
+                 [(ngModel)]="funcionario.email" required>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input type="text"
+                 class="form-control"
+                 id="cpf" name="cpf"
+                 [(ngModel)]="funcionario.cpf" required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="cargo">Cargo</label>
+          <input type="text"
+                 class="form-control"
+                 id="cargo"
+                 name="cargo"
+                 [(ngModel)]="funcionario.cargo" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="salario">Salario</label>
+          <input type="text"
+                 class="form-control"
+                 id="salario"
+                 name="salario"
+                 [(ngModel)]="funcionario.salario"
+                 required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="text" class="form-control" id="telefone" name="telefone"
+                 [(ngModel)]="funcionario.telefone"
+                 required>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="dataNascimento">Data de Nascimento</label>
+          <input type="text"
+                 class="form-control"
+                 id="dataNascimento"
+                 name="dataNascimento"
+                 [(ngModel)]="funcionario.dataNascimento" required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="sexo">Sexo</label>
+        <input type="text"
+               class="form-control"
+               id="sexo"
+               name="sexo"
+               [(ngModel)]="funcionario.sexo" required>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="idSupervisor">Supervisor</label>
+          <input type="text"
+                 class="form-control"
+                 id="idSupervisor"
+                 name="idSupervisor"
+                 [(ngModel)]="funcionario.idSupervisor" required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="idEndereco">Endereco</label>
+          <input type="text" class="form-control" id="idEndereco" name="idEndereco"
+                 [(ngModel)]="funcionario.idEndereco" required>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

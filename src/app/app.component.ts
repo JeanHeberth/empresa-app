@@ -5,11 +5,12 @@ import {SidebarComponent} from "./template/sidebar/sidebar.component";
 import jQuery from 'jquery';
 import {FooterComponent} from "./template/footer/footer.component";
 import {HomeComponent} from "./home/home.component";
+import {EnderecoFormComponent} from "./empresa/endereco-form/endereco-form.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavbarComponent, SidebarComponent, FooterComponent, HomeComponent, RouterOutlet],
+  imports: [NavbarComponent, SidebarComponent, FooterComponent, HomeComponent, RouterOutlet, EnderecoFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 
