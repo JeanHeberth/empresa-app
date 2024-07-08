@@ -29,4 +29,10 @@ export class FuncionarioService {
   deletarFuncionario(funcionarioSelecionado: Funcionario): Observable<any> {
     return this.http.delete<any>('http://localhost:8088/api/funcionario/' + funcionarioSelecionado.id);
   }
+
+  atualizarFuncionario(funcionario: Funcionario): Observable<Funcionario> {
+    // @ts-ignore
+    return this.http.put('http://localhost:8088/api/funcionario/' + funcionario.id, funcionario);
+
+  }
 }

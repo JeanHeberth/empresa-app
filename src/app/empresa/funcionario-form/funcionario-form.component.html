@@ -39,6 +39,7 @@
                  class="form-control"
                  id="email"
                  name="email"
+                 placeholder="Email"
                  [(ngModel)]="funcionario.email" required>
         </div>
       </div>
@@ -52,6 +53,7 @@
           <input type="text"
                  class="form-control"
                  id="cpf" name="cpf"
+                 placeholder="CPF"
                  [(ngModel)]="funcionario.cpf" required>
         </div>
       </div>
@@ -63,6 +65,7 @@
                  class="form-control"
                  id="cargo"
                  name="cargo"
+                 placeholder="Cargo"
                  [(ngModel)]="funcionario.cargo" required>
         </div>
       </div>
@@ -76,6 +79,7 @@
                  class="form-control"
                  id="salario"
                  name="salario"
+                 placeholder="Salario"
                  [(ngModel)]="funcionario.salario"
                  required>
         </div>
@@ -86,6 +90,7 @@
           <label for="telefone">Telefone</label>
           <input type="text" class="form-control" id="telefone" name="telefone"
                  [(ngModel)]="funcionario.telefone"
+                 placeholder="Telefone"
                  required>
         </div>
       </div>
@@ -99,6 +104,7 @@
                  class="form-control"
                  id="dataNascimento"
                  name="dataNascimento"
+                 placeholder="Data de Nascimento"
                  [(ngModel)]="funcionario.dataNascimento" required>
         </div>
       </div>
@@ -109,6 +115,7 @@
                class="form-control"
                id="sexo"
                name="sexo"
+               placeholder="Sexo"
                [(ngModel)]="funcionario.sexo" required>
       </div>
     </div>
@@ -122,6 +129,7 @@
                  class="form-control"
                  id="idSupervisor"
                  name="idSupervisor"
+                 placeholder="ID do Supervisor"
                  [(ngModel)]="funcionario.idSupervisor" required>
         </div>
       </div>
@@ -129,7 +137,11 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="idEndereco">Endereco</label>
-          <input type="text" class="form-control" id="idEndereco" name="idEndereco"
+          <input type="text"
+                 class="form-control"
+                 id="idEndereco"
+                 name="idEndereco"
+                 placeholder="ID do Endereco"
                  [(ngModel)]="funcionario.idEndereco" required>
         </div>
       </div>
