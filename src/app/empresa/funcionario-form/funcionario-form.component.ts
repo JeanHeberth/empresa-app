@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {Funcionario} from "../../classes/Funcionario";
 import {Observable} from "rxjs";
-import {Router, RouterLink} from "@angular/router";
+import {ActivatedRoute, Params, Router, RouterLink} from "@angular/router";
 import {FuncionarioService} from "../../services/funcionario.service";
 import {NgForOf, NgIf} from "@angular/common";
 
@@ -29,11 +29,24 @@ export class FuncionarioFormComponent implements OnInit {
   id: number;
 
   constructor(private funcionarioService: FuncionarioService,
-              private router: Router) {
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
     this.funcionario = new Funcionario();
   }
 
   ngOnInit() {
+    let params: Observable<Params> = this.activatedRoute.params
+    params.subscribe(urlParams => {
+      this.id = urlParams['id'];
+      if (this.id) {
+        this.funcionarioService
+          .buscarFuncionarioPorId(this.id)
+          .subscribe(
+            response => this.funcionario = response,
+            errorResponse => this.funcionario = new Funcionario()
+          )
+      }
+    })
 
   }
 
