@@ -17,6 +17,7 @@ export const routes: Routes = [
   {path: "endereco-form/:id", component: EnderecoFormComponent},
   {path: "endereco-lista", component: EnderecoListaComponent},
   {path: "funcionario-form", component: FuncionarioFormComponent},
+  {path: "funcionario-form/:id", component: FuncionarioFormComponent},
   {path: "funcionario-lista", component: FuncionarioListaComponent},
 
 

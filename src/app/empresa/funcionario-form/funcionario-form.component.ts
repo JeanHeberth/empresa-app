@@ -28,7 +28,8 @@ export class FuncionarioFormComponent implements OnInit {
   // @ts-ignore
   id: number;
 
-  constructor(private funcionarioService: FuncionarioService,) {
+  constructor(private funcionarioService: FuncionarioService,
+              private router: Router) {
     this.funcionario = new Funcionario();
   }
 
@@ -36,21 +37,30 @@ export class FuncionarioFormComponent implements OnInit {
 
   }
 
-  // onSubmit(form: NgForm) {
-  //   this.funcionarioService
-  //     .salvarFuncionario(this.funcionario)
-  //     .subscribe(response => {
-  //         this.success = true;
-  //         this.errors = null;
-  //         this.funcionario = response;
-  //         form.resetForm();
-  //
-  //         // Exibir a mensagem de sucesso
-  //         this.success = true;
-  //       }, errorResponse => {
-  //         this.errors = errorResponse.error.errors;
-  //         console.log(errorResponse.error.errors);
-  //       }
-  //     );
-  // }
+  onSubmit(form: NgForm) {
+    this.funcionarioService
+      .salvarFuncionario(this.funcionario)
+      .subscribe(response => {
+          this.success = true;
+          this.errors = null;
+          this.funcionario = response;
+          form.resetForm();
+          setTimeout(() => {
+            this.success = false;
+          }, 1000);
+
+          // Exibir a mensagem de sucesso
+          this.success = true;
+        }, errorResponse => {
+          this.errors = errorResponse.error.errors;
+          console.log(errorResponse.error.errors);
+        }
+      );
+  }
+
+  voltaParaPaginaDeListagem() {
+    this.success = false;
+    this.router.navigate(['/funcionario-lista']);
+  }
+
 }

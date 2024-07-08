@@ -3,7 +3,21 @@
   <li class="breadcrumb-item active">Funcionário</li>
 </ol>
 <div class="container">
-  <form>
+  <form #funcionarioForm="ngForm" (ngSubmit)="onSubmit(funcionarioForm)" novalidate>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="success == true"
+             class="alert alert-success"
+             role="alert">
+          Funcionário salvo com sucesso!
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{ erro }}
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-md-6">
@@ -120,6 +134,25 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <button type="submit" *ngIf="!funcionario.id" class="btn btn-success" >
+          <i class="fa fa-save"  *ngIf="success"></i> Salvar
+        </button>
+
+        <button type="submit" class="btn btn-primary ml-1" *ngIf="funcionario.id">
+          <i class="fa-solid fa-arrows-rotate"></i> Atualizar
+        </button>
+
+        <button type="button" class="btn btn-danger ml-1" (click)="voltaParaPaginaDeListagem()">
+          <i class="fa-solid fa-circle-left"></i> Voltar
+        </button>
+
+      </div>
+    </div>
+
+
 
   </form>
 </div>

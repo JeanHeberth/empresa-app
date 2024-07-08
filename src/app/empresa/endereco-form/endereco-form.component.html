@@ -4,7 +4,7 @@
 </ol>
 
 <div class="container">
-  <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+  <form #funcionarioForm="ngForm" (ngSubmit)="onSubmit(funcionarioForm)" novalidate>
 
     <div class="row">
       <div class="col-md-12">
@@ -30,7 +30,7 @@
                  name="cep" (input)="onCepChange()" required/>
           <div>
             <small class="text-danger"
-                   *ngIf="form.submitted && !endereco.cep">CEP obrigatório</small>
+                   *ngIf="funcionarioForm.submitted && !endereco.cep">CEP obrigatório</small>
 
           </div>
 
@@ -111,7 +111,7 @@
                    name="casa" [required]="true"/>
             <div>
               <small class="text-danger"
-                     *ngIf="form.submitted && !endereco.casa">Casa obrigatória</small>
+                     *ngIf="funcionarioForm.submitted && !endereco.casa">Casa obrigatória</small>
 
           </div>
         </div>
