@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {Funcionario} from "../../classes/Funcionario";
 import {Observable} from "rxjs";
-import {Router, RouterLink} from "@angular/router";
+import {ActivatedRoute, Params, Router, RouterLink} from "@angular/router";
 import {FuncionarioService} from "../../services/funcionario.service";
 import {NgForOf, NgIf} from "@angular/common";
 
@@ -28,29 +28,50 @@ export class FuncionarioFormComponent implements OnInit {
   // @ts-ignore
   id: number;
 
-  constructor(private funcionarioService: FuncionarioService,) {
+  constructor(private funcionarioService: FuncionarioService,
+              private router: Router, private activatedRoute: ActivatedRoute) {
     this.funcionario = new Funcionario();
   }
 
   ngOnInit() {
-
+  let params: Observable<Params> = this.activatedRoute.params
+    params.subscribe(urlParams => {
+      this.id = urlParams['id'];
+      if (this.id) {
+        this.funcionarioService
+          .buscarFuncionarioPorId(this.id)
+          .subscribe(
+            funcionarioResult => this.funcionario = funcionarioResult
+          );
+      }
+    })
   }
 
-  // onSubmit(form: NgForm) {
-  //   this.funcionarioService
-  //     .salvarFuncionario(this.funcionario)
-  //     .subscribe(response => {
-  //         this.success = true;
-  //         this.errors = null;
-  //         this.funcionario = response;
-  //         form.resetForm();
-  //
-  //         // Exibir a mensagem de sucesso
-  //         this.success = true;
-  //       }, errorResponse => {
-  //         this.errors = errorResponse.error.errors;
-  //         console.log(errorResponse.error.errors);
-  //       }
-  //     );
-  // }
+  onSubmit(form: NgForm) {
+    this.funcionarioService
+      .salvarFuncionario(this.funcionario)
+      .subscribe(response => {
+          this.success = true;
+          this.errors = null;
+          this.funcionario = response;
+          form.resetForm();
+
+          // Ocultar a mensagem de sucesso após 3 segundos
+          setTimeout(() => {
+            this.success = false;
+          }, 1500);
+
+          // Exibir a mensagem de sucesso
+          this.success = true;
+        }, errorResponse => {
+          this.errors = errorResponse.error.errors;
+          console.log(errorResponse.error.errors);
+        }
+      );
+  }
+
+  voltaParaPaginaDeListagem() {
+    this.success = false;
+    this.router.navigate(['/funcionario-lista']);
+  }
 }

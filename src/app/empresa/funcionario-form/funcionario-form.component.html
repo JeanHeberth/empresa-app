@@ -3,7 +3,20 @@
   <li class="breadcrumb-item active">Funcionário</li>
 </ol>
 <div class="container">
-  <form>
+  <form #form="ngForm" (submit)="onSubmit(form)" novalidate>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="success == true"
+             class="alert alert-success"
+             role="alert">
+          Funcionário salvo com sucesso!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{ erro }}
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-md-6">
@@ -25,7 +38,9 @@
                  class="form-control"
                  id="email"
                  name="email"
-                 [(ngModel)]="funcionario.email" required>
+                 [(ngModel)]="funcionario.email"
+                 placeholder="Email"
+                 required>
         </div>
       </div>
     </div>
@@ -38,7 +53,9 @@
           <input type="text"
                  class="form-control"
                  id="cpf" name="cpf"
-                 [(ngModel)]="funcionario.cpf" required>
+                 [(ngModel)]="funcionario.cpf"
+                 placeholder="CPF"
+                 required>
         </div>
       </div>
 
@@ -49,7 +66,9 @@
                  class="form-control"
                  id="cargo"
                  name="cargo"
-                 [(ngModel)]="funcionario.cargo" required>
+                 [(ngModel)]="funcionario.cargo"
+                 placeholder="Cargo"
+                 required>
         </div>
       </div>
     </div>
@@ -61,7 +80,7 @@
           <input type="text"
                  class="form-control"
                  id="salario"
-                 name="salario"
+                 name="salario" placeholder="Salario"
                  [(ngModel)]="funcionario.salario"
                  required>
         </div>
@@ -71,7 +90,7 @@
         <div class="form-group">
           <label for="telefone">Telefone</label>
           <input type="text" class="form-control" id="telefone" name="telefone"
-                 [(ngModel)]="funcionario.telefone"
+                 [(ngModel)]="funcionario.telefone" placeholder="Telefone"
                  required>
         </div>
       </div>
@@ -84,7 +103,7 @@
           <input type="text"
                  class="form-control"
                  id="dataNascimento"
-                 name="dataNascimento"
+                 name="dataNascimento" placeholder="Data de Nascimento"
                  [(ngModel)]="funcionario.dataNascimento" required>
         </div>
       </div>
@@ -94,7 +113,7 @@
         <input type="text"
                class="form-control"
                id="sexo"
-               name="sexo"
+               name="sexo" placeholder="Sexo"
                [(ngModel)]="funcionario.sexo" required>
       </div>
     </div>
@@ -107,7 +126,7 @@
           <input type="text"
                  class="form-control"
                  id="idSupervisor"
-                 name="idSupervisor"
+                 name="idSupervisor" placeholder="Supervisor"
                  [(ngModel)]="funcionario.idSupervisor" required>
         </div>
       </div>
@@ -115,11 +134,31 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="idEndereco">Endereco</label>
-          <input type="text" class="form-control" id="idEndereco" name="idEndereco"
-                 [(ngModel)]="funcionario.idEndereco" required>
+          <input type="text" class="form-control" id="idEndereco"
+                 name="idEndereco"
+                 [(ngModel)]="funcionario.idEndereco"
+                 placeholder="Endereco" required>
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success" *ngIf="!funcionario.id">
+          <i class="fa fa-save" *ngIf="success"></i> Salvar
+
+        </button>
+        <button type="submit" class="btn btn-primary ml-1" *ngIf="funcionario.id">
+          <i class="fa-solid fa-arrows-rotate"></i> Atualizar
+        </button>
+
+        <button type="button" class="btn btn-danger ml-1" (click)="voltaParaPaginaDeListagem()">
+          <i class="fa-solid fa-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+
+
 
   </form>
 </div>
