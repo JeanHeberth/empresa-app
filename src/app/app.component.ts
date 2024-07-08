@@ -3,6 +3,7 @@ import {RouterOutlet} from '@angular/router';
 import {NavbarComponent} from "./template/navbar/navbar.component";
 import {SidebarComponent} from "./template/sidebar/sidebar.component";
 import jQuery from 'jquery';
+import * as $ from 'jquery';
 import {FooterComponent} from "./template/footer/footer.component";
 import {HomeComponent} from "./home/home.component";
 import {EnderecoFormComponent} from "./empresa/endereco-form/endereco-form.component";
