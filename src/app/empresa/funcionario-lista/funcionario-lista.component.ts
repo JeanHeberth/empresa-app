@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Funcionario} from "../../classes/Funcionario";
+import {Funcionario} from "../../classes/funcionario";
 import {FuncionarioService} from "../../services/funcionario.service";
 import {Router, RouterLink} from "@angular/router";
 import {NgForOf, NgIf} from "@angular/common";

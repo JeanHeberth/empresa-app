@@ -1,9 +1,10 @@
-<h1 class="mt-4">Listas de funcionários</h1>
+<h1 class="mt-4">Listas de projetos</h1>
 <ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item active">Funcionários</li>
+  <li class="breadcrumb-item active">projetos</li>
 </ol>
 
 <div class="container">
+
   <div class="row">
     <div class="col-md-12">
       <div *ngIf="mensagemSucesso" class="alert alert-success" role="alert">
@@ -15,7 +16,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="row">
     <div class="col-md-2">
@@ -33,30 +33,28 @@
         <tr>
           <th>ID</th>
           <th>Nome</th>
-          <th>Data de Nascimento</th>
-          <th>Cargo</th>
-          <th>CPF</th>
-          <th>Endereço</th>
-          <th>Supervisor</th>
+          <th>Valor do projeto</th>
+          <th>Inicio do projeto</th>
+          <th>Final do projeto</th>
+          <th>Departamento</th>
         </tr>
         </thead>
 
         <tbody class="">
-        <tr *ngFor="let funcionario of funcionarios">
-          <td>{{ funcionario.id }}</td>
-          <td>{{ funcionario.nome }}</td>
-          <td>{{ funcionario.dataNascimento }}</td>
-          <td>{{ funcionario.cargo }}</td>
-          <td>{{ funcionario.cpf }}</td>
-          <td>{{ funcionario.idEndereco }}</td>
-          <td>{{ funcionario.idSupervisor }}</td>
+        <tr *ngFor="let projeto of projetos">
+          <td>{{ projeto.id }}</td>
+          <td>{{ projeto.nome }}</td>
+          <td>{{ projeto.valorProjeto }}</td>
+          <td>{{ projeto.dataInicio }}</td>
+          <td>{{ projeto.dataFinal }}</td>
+          <td>{{ projeto.idDepartamento }}</td>
           <td>
 
-            <button class="btn btn-warning" routerLink="/funcionario-form/{{ funcionario.id }}">
+            <button class="btn btn-warning" routerLink="/projeto-form/{{ projeto.id }}">
               <i class="fa-solid fa-square-pen"></i>
             </button>
 
-            <button class="btn btn-danger ml-1" (click)="preparaDelecao(funcionario)"
+            <button class="btn btn-danger ml-1" (click)="preparaDelecao(projeto)"
                     data-bs-toggle="modal"
                     data-bs-target="#modalDelecao">
               <i class="fa-solid fa-trash-can"></i>
@@ -68,6 +66,9 @@
     </div>
   </div>
 
+
+
+
   <!-- Modal de exclusão -->
   <div class="modal fade" id="modalDelecao" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -77,17 +78,16 @@
           <h4>Confirmação</h4>
         </div>
 
-        <div class="modal-body" *ngIf="funcionarioSelecionado">
-          Deseja realmente apagar o departamento {{ funcionarioSelecionado.nome }} ?
+        <div class="modal-body" *ngIf="projetoSelecionado">
+          Deseja realmente apagar o projeto {{ projetoSelecionado.nome }} ?
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="deletarFuncionario()">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="deletarProjeto()">
             Confirmar
           </button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>
-
       </div>
     </div>
   </div>
