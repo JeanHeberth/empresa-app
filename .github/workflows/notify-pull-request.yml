@@ -28,7 +28,7 @@ jobs:
                 {
                   "to": [
                     {
-                      "email": "jeanheberth@souzavieira.com"
+                      "email": "jeanheberth19@gmail.com"
                     }
                   ],
                   "subject": "Novo Pull Request: '"$pr_title"'",
@@ -40,7 +40,7 @@ jobs:
                 }
               ],
               "from": {
-                "email": "noreply@souzavieira.com"
+                "email": "noreply@gmail.com"
               },
               "content": [
                 {
