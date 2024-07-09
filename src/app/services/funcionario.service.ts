@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Funcionario} from "../classes/Funcionario";
+import {Funcionario} from "../classes/funcionario";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 

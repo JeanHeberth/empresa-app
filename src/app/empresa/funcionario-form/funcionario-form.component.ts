@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
-import {Funcionario} from "../../classes/Funcionario";
+import {Funcionario} from "../../classes/funcionario";
 import {Observable} from "rxjs";
 import {ActivatedRoute, Params, Router, RouterLink} from "@angular/router";
 import {FuncionarioService} from "../../services/funcionario.service";

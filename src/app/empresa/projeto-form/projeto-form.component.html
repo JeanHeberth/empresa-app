@@ -1,0 +1,95 @@
+<h1 class="mt-4">Cadastro de Projeto</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">projetos</li>
+</ol>
+
+<div class="container">
+  <form #projetoForm="ngForm" (ngSubmit)="onSubmit(projetoForm)" novalidate>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="success == true"
+             class="alert alert-success"
+             role="alert">
+          Projeto salvo com sucesso!
+
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{ erro }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="nome">Nome:</label>
+          <input id="nome" type="text"
+                 class="form-control"
+                 [(ngModel)]="projeto.nome"
+                 name="cep" required/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="valorProjeto">Valor do Projeto:</label>
+          <input id="valorProjeto" type="text" class="form-control"
+                 [(ngModel)]="projeto.valorProjeto"
+                 name="logradouro"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="dataInicio">Data Início:</label>
+          <input id="dataInicio" type="text"
+                 class="form-control"
+                 [(ngModel)]="projeto.dataInicio"
+                 name="datainicio" required/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="dataFinal">Data Final:</label>
+          <input id="dataFinal" type="text" class="form-control"
+                 [(ngModel)]="projeto.dataFinal"
+                 name="dataFinal"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="departamento">Departamento:</label>
+          <input id="departamento" type="text"
+                 class="form-control"
+                 [(ngModel)]="projeto.idDepartamento"
+                 name="departamento" required/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success" *ngIf="!projeto.id">
+          <i class="fa fa-save" *ngIf="success"></i> Salvar
+
+        </button>
+        <button type="submit" class="btn btn-primary ml-1" *ngIf="projeto.id">
+          <i class="fa-solid fa-arrows-rotate"></i> Atualizar
+        </button>
+
+        <button type="button" class="btn btn-danger ml-1" (click)="voltaParaPaginaDeListagem()">
+          <i class="fa-solid fa-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>

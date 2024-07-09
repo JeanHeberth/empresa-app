@@ -7,6 +7,8 @@ import {EnderecoFormComponent} from "./empresa/endereco-form/endereco-form.compo
 import {EnderecoListaComponent} from "./empresa/endereco-lista/endereco-lista.component";
 import {FuncionarioListaComponent} from "./empresa/funcionario-lista/funcionario-lista.component";
 import {FuncionarioFormComponent} from "./empresa/funcionario-form/funcionario-form.component";
+import {ProjetoListaComponent} from "./empresa/projeto-lista/projeto-lista.component";
+import {ProjetoFormComponent} from "./empresa/projeto-form/projeto-form.component";
 
 export const routes: Routes = [
   {path: "home", component: HomeComponent},
@@ -19,6 +21,9 @@ export const routes: Routes = [
   {path: "funcionario-form", component: FuncionarioFormComponent},
   {path: "funcionario-form/:id", component: FuncionarioFormComponent},
   {path: "funcionario-lista", component: FuncionarioListaComponent},
+  {path: "projeto-form", component: ProjetoFormComponent},
+  {path: "projeto-form/:id", component: ProjetoFormComponent},
+  {path: "projeto-lista", component: ProjetoListaComponent},
 
 
 ];

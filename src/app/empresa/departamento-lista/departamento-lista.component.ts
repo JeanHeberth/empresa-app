@@ -32,7 +32,8 @@ export class DepartamentoListaComponent implements OnInit {
   ngOnInit(): void {
     this.departamentoService
       .buscarDepartamentos()
-      .subscribe(departamentos => this.departamentos = departamentos)
+      .subscribe(departamentos =>
+        this.departamentos = departamentos)
   }
 
 
