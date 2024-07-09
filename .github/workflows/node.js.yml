@@ -24,6 +24,33 @@ jobs:
       - name: Allow Pull Request
         run: echo "Pull request to main is allowed"
 
+  restrict-pull-request:
+    runs-on: ubuntu-latest
+    if: github.base_ref != 'main' && github.event_name == 'pull_request'
+    steps:
+      - name: Cancel Pull Request
+        run: exit 1
+
+  restrict-branch:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Cancel Pull Request
+        run: exit 1
+
+  restrict-developer:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/developer' && github.event_name == 'push'
+    steps:
+      - name: Cancel Push to Developer
+        run: exit 1
+
+  restrict-developer-pull-request:
+    runs-on: ubuntu-latest
+    if: github.base_ref == 'developer' && github.event_name == 'pull_request'
+    steps:
+      - name: Cancel Pull Request
+        run: exit 1
 
   build:
 
