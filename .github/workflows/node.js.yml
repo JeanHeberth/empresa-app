@@ -24,6 +24,14 @@ jobs:
       - name: Cancel Pull Request
         run: exit 1
 
+  restrict-branch:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Cancel Pull Request
+        run: exit 1
+
+
   build:
 
     runs-on: ubuntu-latest
