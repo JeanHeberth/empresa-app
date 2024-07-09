@@ -9,6 +9,8 @@ import {FuncionarioListaComponent} from "./empresa/funcionario-lista/funcionario
 import {FuncionarioFormComponent} from "./empresa/funcionario-form/funcionario-form.component";
 import {ProjetoListaComponent} from "./empresa/projeto-lista/projeto-lista.component";
 import {ProjetoFormComponent} from "./empresa/projeto-form/projeto-form.component";
+import {OrcamentoFormComponent} from "./empresa/orcamento-form/orcamento-form.component";
+import {OrcamentoListaComponent} from "./empresa/orcamento-lista/orcamento-lista.component";
 
 export const routes: Routes = [
   {path: "home", component: HomeComponent},
@@ -24,6 +26,10 @@ export const routes: Routes = [
   {path: "projeto-form", component: ProjetoFormComponent},
   {path: "projeto-form/:id", component: ProjetoFormComponent},
   {path: "projeto-lista", component: ProjetoListaComponent},
+  {path: "orcamento-form", component: OrcamentoFormComponent},
+  {path: "orcamento-form/:id", component: OrcamentoFormComponent},
+  {path: "orcamento-lista", component: OrcamentoListaComponent},
+
 
 
 ];
