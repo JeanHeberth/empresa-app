@@ -12,6 +12,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      - name: Install mailjet_rest
+        run: pip install mailjet-rest
+
       - name: Send email notification
         env:
           MAILJET_API_KEY: ${{ secrets.MAILJET_API_KEY }}
