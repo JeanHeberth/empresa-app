@@ -1,0 +1,72 @@
+name: Notify on Pull Request
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      - name: Install mailjet_rest
+        run: pip install mailjet-rest
+
+      - name: Send email notification
+        env:
+          MAILJET_API_KEY: ${{ secrets.MAILJET_API_KEY }}
+          MAILJET_SECRET_KEY: ${{ secrets.MAILJET_SECRET_KEY }}
+          TO_EMAIL: 'seu_email@example.com'
+          FROM_EMAIL: 'noreply@seu_dominio.com'
+          REPO_NAME: ${{ github.repository }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_USER: ${{ github.event.pull_request.user.login }}
+        run: |
+          echo "Sending email notification..."
+          cat <<EOF > send_email.py
+          import os
+          from mailjet_rest import Client
+
+          api_key = os.environ.get('MAILJET_API_KEY')
+          api_secret = os.environ.get('MAILJET_SECRET_KEY')
+          mailjet = Client(auth=(api_key, api_secret), version='v3.1')
+
+          from_email = os.environ.get('FROM_EMAIL')
+          to_email = os.environ.get('TO_EMAIL')
+          subject = f"New Pull Request in {os.environ.get('REPO_NAME')}"
+          body = f"Pull Request Title: {os.environ.get('PR_TITLE')}\nURL: {os.environ.get('PR_URL')}\nOpened by: {os.environ.get('PR_USER')}"
+
+          data = {
+            'Messages': [
+              {
+                "From": {
+                  "Email": from_email,
+                  "Name": "GitHub Actions"
+                },
+                "To": [
+                  {
+                    "Email": to_email,
+                    "Name": "Repo Owner"
+                  }
+                ],
+                "Subject": subject,
+                "TextPart": body
+              }
+            ]
+          }
+
+          result = mailjet.send.create(data=data)
+          print(result.status_code)
+          print(result.json())
+          EOF
+
+          python3 send_email.py
