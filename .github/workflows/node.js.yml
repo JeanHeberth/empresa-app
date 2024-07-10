@@ -94,8 +94,8 @@ jobs:
         env:
           MAILJET_API_KEY: ${{ secrets.MAILJET_API_KEY }}
         MAILJET_SECRET_KEY: ${{ secrets.MAILJET_SECRET_KEY }}
-        TO_EMAIL: 'seu_email@example.com'
-        FROM_EMAIL: 'noreply@seu_dominio.com'
+        TO_EMAIL: 'jeanheberth@souzavieira.com'
+        FROM_EMAIL: 'noreply@souzavieira.com'
         REPO_NAME: ${{ github.repository }}
         PR_TITLE: ${{ github.event.pull_request.title }}
         PR_URL: ${{ github.event.pull_request.html_url }}
