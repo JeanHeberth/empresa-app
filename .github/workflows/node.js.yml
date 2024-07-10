@@ -10,19 +10,26 @@ on:
 
 jobs:
 
-  restrict-push:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    steps:
-      - name: Cancel Push to Main
-        run: exit 1
-
   allow-pull-request:
     runs-on: ubuntu-latest
     if: github.base_ref == 'main' && github.event_name == 'pull_request'
     steps:
       - name: Allow Pull Request
         run: echo "Pull request to main is allowed"
+
+  restrict-pull-request:
+    runs-on: ubuntu-latest
+    if: github.base_ref != 'main' && github.event_name == 'pull_request'
+    steps:
+      - name: Cancel Pull Request
+        run: exit 1
+
+  restrict-branch:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Cancel Pull Request
+        run: exit 1
 
 
   build:
