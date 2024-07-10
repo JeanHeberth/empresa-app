@@ -93,9 +93,7 @@ jobs:
       - name: Build the project
         run: npm run build
 
-  notify:
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Send email notification
         env:
           MAILJET_API_KEY: ${{ secrets.MAILJET_API_KEY }}
