@@ -1,14 +1,21 @@
-name: Restrict Push and Pull Request
+name: Node.js CI
 
 on:
   push:
     branches:
-      - 'developer'
+      "developer"
+
   pull_request:
-    branches:
-      - 'main'
+    branches: [ "main" ]
 
 jobs:
+
+  restrict-push:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Cancel Push to Main
+        run: exit 1
 
   allow-pull-request:
     runs-on: ubuntu-latest
@@ -17,21 +24,21 @@ jobs:
       - name: Allow Pull Request
         run: echo "Pull request to main is allowed"
 
-  restrict-push:
+
+  build:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Verify push source branch
-        id: check_branch
-        run: |
-          BASE_BRANCH=$(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD))
-          echo "::set-output name=base_branch::${BASE_BRANCH}"
-
-      - name: Restrict push to developer
-        if: steps.check_branch.outputs.base_branch != 'origin/main'
-        run: exit 1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build --if-present
