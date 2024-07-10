@@ -3,7 +3,7 @@ name: CI Pipeline
 on:
   push:
     branches:
-      "developer"
+      - main
 
   pull_request:
     branches:
@@ -97,8 +97,39 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           PR_USER: ${{ github.event.pull_request.user.login }}
         run: |
-          echo "Sending email notification..."
-          cat <<EOF > send_email.py
-          import os
-          import sendgrid
-          from sendgrid.helpers.mail import Mail, Email, To, Content
+            echo "Sending email notification..."
+            cat <<EOF > send_email.py
+            import os
+            from mailjet_rest import Client
+
+            mailjet = Client(
+                auth=(os.environ.get('MAILJET_API_KEY'), os.environ.get('MAILJET_SECRET_KEY')),
+                version='v3.1'
+            )
+
+            data = {
+                'Messages': [
+                    {
+                        'From': {
+                            'Email': os.environ.get('FROM_EMAIL'),
+                            'Name': 'N/A'
+                        },
+                        'To': [
+                            {
+                                'Email': os.environ.get('TO_EMAIL'),
+                                'Name': 'N/A'
+                            }
+                        ],
+                        'Subject': f"New Pull Request in {os.environ.get('REPO_NAME')}",
+                        'TextPart': f"Pull Request Title: {os.environ.get('PR_TITLE')}\nURL: {os.environ.get('PR_URL')}\nOpened by: {os.environ.get('PR_USER')}",
+                        'HTMLPart': f"Pull Request Title: {os.environ.get('PR_TITLE')}\nURL: {os.environ.get('PR_URL')}\nOpened by: {os.environ.get('PR_USER')}"
+                    }
+                ]
+            }
+
+            response = mailjet.send.create(data=data)
+            print(response.status_code)
+            print(response.json())
+            EOF
+
+          python3 send_email.py
