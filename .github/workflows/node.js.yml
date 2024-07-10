@@ -89,6 +89,8 @@ jobs:
       - name: Install mailjet_rest
         run: pip install mailjet-rest
 
+  notification: Send email notification
+  steps:
       - name: Send email notification
         env:
           MAILJET_API_KEY: ${{ secrets.MAILJET_API_KEY }}
