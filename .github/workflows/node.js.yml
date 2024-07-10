@@ -3,7 +3,8 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - developer
+      "developer"
+
   pull_request:
     branches:
       - main
