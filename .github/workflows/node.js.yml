@@ -1,4 +1,4 @@
-name: Node.js CI
+name: CI Pipeline
 
 on:
   push:
@@ -6,46 +6,114 @@ on:
       "developer"
 
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-
-  allow-pull-request:
+  install:
     runs-on: ubuntu-latest
-    if: github.base_ref == 'main' && github.event_name == 'pull_request'
     steps:
-      - name: Allow Pull Request
-        run: echo "Pull request to main is allowed"
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  restrict-pull-request:
-    runs-on: ubuntu-latest
-    if: github.base_ref != 'main' && github.event_name == 'pull_request'
-    steps:
-      - name: Cancel Pull Request
-        run: exit 1
-
-  restrict-branch:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    steps:
-      - name: Cancel Pull Request
-        run: exit 1
-
-
-  build:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [ 18.x ]
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build --if-present
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: npm install
+
+  test:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+#  lint:
+#    runs-on: ubuntu-latest
+#    needs: install
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Set up Node.js
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: '18.x'
+#
+#      - name: Install dependencies
+#        run: npm ci
+#
+#      - name: Run lint
+#        run: npm run lint
+
+  build:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the project
+        run: npm run build
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: [test, lint, build]
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Send email notification
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          TO_EMAIL: 'jeanheberth@souzavieira.com'
+          FROM_EMAIL: 'noreply@souzavieira.com'
+          REPO_NAME: ${{ github.repository }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_USER: ${{ github.event.pull_request.user.login }}
+        run: |
+          echo "Sending email notification..."
+          cat <<EOF > send_email.py
+          import os
+          import sendgrid
+          from sendgrid.helpers.mail import Mail, Email, To, Content
+
+          sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
+
+          from_email = Email(os.environ.get('FROM_EMAIL'))
+          to_email = To(os.environ.get('TO_EMAIL'))
+          subject = f"New Pull Request in {os.environ.get('REPO_NAME')}"
+          content = Content("text/plain", f"Pull Request Title: {os.environ.get('PR_TITLE')}\nURL: {os.environ.get('PR_URL')}\nOpened by: {os.environ.get('PR_USER')}")
+          mail = Mail(from_email, to_email, subject, content)
+
+          response = sg.client.mail.send.post(request_body=mail.get())
+          print(response.status_code)
+          print(response.body)
+          print(response.headers)
+          EOF
+
+          python3 send_email.py
