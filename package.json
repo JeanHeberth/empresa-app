@@ -20,8 +20,15 @@
     "@angular/router": "^18.0.0",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "currency": "^4.1.0",
+    "date-fns": "^3.6.0",
     "jquery": "^3.7.1",
     "mailjet": "^0.0.1",
+    "moment": "^2.30.1",
+    "ng2-currency-mask": "^13.0.3",
+    "ngx-date-fns": "^11.0.0",
+    "ngx-mask": "^17.1.1",
+    "pikaday": "^1.8.2",
     "popper.js": "^1.16.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -39,6 +46,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ngx-currency": "^18.0.0",
     "typescript": "~5.4.2"
   }
 }

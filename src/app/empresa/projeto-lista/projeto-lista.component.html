@@ -37,6 +37,7 @@
           <th>Inicio do projeto</th>
           <th>Final do projeto</th>
           <th>Departamento</th>
+          <th>Opções</th>
         </tr>
         </thead>
 
@@ -47,7 +48,7 @@
           <td>{{ projeto.valorProjeto }}</td>
           <td>{{ projeto.dataInicio }}</td>
           <td>{{ projeto.dataFinal }}</td>
-          <td>{{ projeto.idDepartamento }}</td>
+          <td>{{ projeto.nomeDepartamento }}</td>
           <td>
 
             <button class="btn btn-warning" routerLink="/projeto-form/{{ projeto.id }}">

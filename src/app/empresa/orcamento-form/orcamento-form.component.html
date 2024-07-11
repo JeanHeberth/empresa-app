@@ -1,17 +1,17 @@
-<h1 class="mt-4">Cadastro de Projeto</h1>
+<h1 class="mt-4">Cadastro de Orçamento</h1>
 <ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item active">projetos</li>
+  <li class="breadcrumb-item active">orçamentos</li>
 </ol>
 
 <div class="container">
-  <form #orcamentoForm="ngForm" (ngSubmit)="onSubmit(orcamentoForm)" novalidate>
+  <form #orcamentoForm="ngForm" novalidate>
 
     <div class="row">
       <div class="col-md-12">
         <div *ngIf="success == true"
              class="alert alert-success"
              role="alert">
-          Projeto salvo com sucesso!
+          Orçamento salvo com sucesso!
 
         </div>
 
@@ -40,6 +40,8 @@
                  type="text"
                  class="form-control"
                  placeholder="valor do Orcamento"
+                 [options]="{prefix: 'R$ '}"
+                 currencyMask
                  [(ngModel)]="orcamento.valor"
                  name="logradouro"/>
         </div>
@@ -50,10 +52,9 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="dataInicio">Data Início:</label>
-          <input id="dataInicio" type="text"
+          <input id="dataInicio" type="date"
                  class="form-control"
-                 placeholder="Data do orçamento"
-
+                 placeholder="Data do orçamento" [(ngModel)]="model.dataConverter"
                  [(ngModel)]="orcamento.dataInicio"
                  name="datainicio" required/>
         </div>
@@ -62,7 +63,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="dataFinal">Data Final:</label>
-          <input id="dataFinal" type="text" class="form-control"
+          <input id="dataFinal" type="date" class="form-control"
                  placeholder="Validade do Orcamento"
                  [(ngModel)]="orcamento.dataFinal"
                  name="dataFinal"/>
@@ -85,11 +86,20 @@
 
     <div class="row">
       <div class="col-md-3">
-        <button type="submit" class="btn btn-success" *ngIf="!orcamento.id">
+        <button id="salvar"
+                type="submit"
+                class="btn btn-success"
+                *ngIf="!orcamento.id"
+                (click)=" salvarOrcamento(orcamentoForm)">
           <i class="fa fa-save" *ngIf="success"></i> Salvar
 
         </button>
-        <button type="submit" class="btn btn-primary ml-1" *ngIf="orcamento.id">
+        <button id="atualizar"
+                type="submit"
+                class="btn btn-primary ml-1"
+                *ngIf="orcamento.id"
+                [disabled]="orcamentoForm.form.invalid"
+                (click)="atualizarOrcamento(orcamentoForm)">
           <i class="fa-solid fa-arrows-rotate"></i> Atualizar
         </button>
 
