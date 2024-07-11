@@ -5,6 +5,8 @@ import {Projeto} from "../../classes/projeto";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ProjetoService} from "../../services/projeto.service";
 import {Observable} from "rxjs";
+import {NgxMaskDirective} from "ngx-mask";
+import {CurrencyMaskModule} from "ng2-currency-mask";
 
 @Component({
   selector: 'app-projeto-form',
@@ -13,7 +15,9 @@ import {Observable} from "rxjs";
     FormsModule,
     ReactiveFormsModule,
     NgIf,
-    NgForOf
+    NgForOf,
+    NgxMaskDirective,
+    CurrencyMaskModule,
   ],
   templateUrl: './projeto-form.component.html',
   styleUrl: './projeto-form.component.css'
@@ -26,6 +30,10 @@ export class ProjetoFormComponent implements OnInit {
   errors: null;
   // @ts-ignore
   id: number;
+
+
+
+
 
   constructor(private projetoService: ProjetoService,
               private router: Router,

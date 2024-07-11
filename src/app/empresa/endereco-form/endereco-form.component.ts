@@ -5,6 +5,8 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
+import {NgxCurrencyDirective} from "ngx-currency";
+import {NgxMaskDirective} from "ngx-mask";
 
 @Component({
   selector: 'app-endereco-form',
@@ -13,7 +15,9 @@ import {NgForOf, NgIf} from "@angular/common";
     NgIf,
     NgForOf,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxCurrencyDirective,
+    NgxMaskDirective
   ],
   templateUrl: "./endereco-form.component.html",
   styleUrl: './endereco-form.component.css'

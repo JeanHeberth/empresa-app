@@ -1,4 +1,7 @@
-<h1 class="mt-4">Cadastro de Projeto</h1>
+<h1 class="mt-4" xmlns:thousandSeparator="http://www.w3.org/1999/xhtml"
+    xmlns:thousandSeparator="http://www.w3.org/1999/xhtml" xmlns:thousandSeparator="http://www.w3.org/1999/xhtml"
+    xmlns:thousandSeparator="http://www.w3.org/1999/xhtml" xmlns:thousandSeparator="http://www.w3.org/1999/xhtml">
+  Cadastro de Projeto</h1>
 <ol class="breadcrumb mb-4">
   <li class="breadcrumb-item active">projetos</li>
 </ol>
@@ -35,9 +38,14 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="valorProjeto">Valor do Projeto:</label>
-          <input id="valorProjeto" type="text" class="form-control"
+          <input id="valorProjeto"
+                 type="text"
+                 currencyMask
+                 [options]="{prefix: 'R$ '}"
+                 class="form-control"
                  [(ngModel)]="projeto.valorProjeto"
-                 name="logradouro"/>
+                 placeholder="valor do projeto"
+                 name="valorProjeto"/>
         </div>
       </div>
     </div>
@@ -46,7 +54,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="dataInicio">Data Início:</label>
-          <input id="dataInicio" type="text"
+          <input id="dataInicio" type="date"
                  class="form-control"
                  [(ngModel)]="projeto.dataInicio"
                  name="datainicio" required/>
@@ -56,7 +64,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="dataFinal">Data Final:</label>
-          <input id="dataFinal" type="text" class="form-control"
+          <input id="dataFinal" type="date" class="form-control"
                  [(ngModel)]="projeto.dataFinal"
                  name="dataFinal"/>
         </div>

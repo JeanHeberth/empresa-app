@@ -5,6 +5,9 @@ import {Observable} from "rxjs";
 import {ActivatedRoute, Params, Router, RouterLink} from "@angular/router";
 import {FuncionarioService} from "../../services/funcionario.service";
 import {NgForOf, NgIf} from "@angular/common";
+import {NgxMaskDirective} from "ngx-mask";
+import {NgxCurrencyDirective} from "ngx-currency";
+import {CurrencyMaskModule} from "ng2-currency-mask";
 
 @Component({
   selector: 'app-funcionario-form',
@@ -13,7 +16,9 @@ import {NgForOf, NgIf} from "@angular/common";
     NgIf,
     NgForOf,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxMaskDirective,
+    CurrencyMaskModule,
   ],
   templateUrl: './funcionario-form.component.html',
   styleUrl: './funcionario-form.component.css'

@@ -1,3 +1,5 @@
+import {Endereco} from "./endereco";
+
 export class Funcionario {
   // @ts-ignore
   id: number;
@@ -23,6 +25,9 @@ export class Funcionario {
   idSupervisor: number;
   // @ts-ignore
   idEndereco: number;
+  // @ts-ignore
+  funcionario: Funcionario;
+
 
 
 

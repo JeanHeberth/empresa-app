@@ -35,16 +35,15 @@
         <thead>
         <tr>
           <th>ID</th>
-          <th>Data Cadastro</th>
           <th>Nome</th>
           <th>Numero</th>
+          <th>Opcões</th>
         </tr>
         </thead>
 
         <tbody class="">
         <tr *ngFor="let departamento of departamentos">
           <td>{{ departamento.id }}</td>
-          <td>{{ departamento.dataCadastro }}</td>
           <td>{{ departamento.nome }}</td>
           <td>{{ departamento.numero }}</td>
           <td>

@@ -8,25 +8,29 @@ import {Orcamento} from "../classes/orcamento";
 })
 export class OrcamentoService {
 
+
+  private baseUrl = 'http://localhost:8088/api/orcamento';
+
+
   constructor(private http: HttpClient ) { }
 
 
   listarOrcamentos(): Observable <Orcamento[]> {
-    return this.http.get<Orcamento[]>('http://localhost:8088/api/orcamento')
+    return this.http.get<Orcamento[]>(this.baseUrl)
   }
 
   buscarOrcamentoPorId(id: number): Observable<Orcamento> {
-    return this.http.get<Orcamento>('http://localhost:8088/api/orcamento/' + id)
+    return this.http.get<Orcamento>(this.baseUrl + id)
 
   }
 
   salvarOrcamento(orcamento: Orcamento): Observable<Orcamento> {
-    return this.http.post<Orcamento>('http://localhost:8088/api/orcamento', orcamento)
+    return this.http.post<Orcamento>(this.baseUrl, orcamento)
 
   }
 
   atualizarOrcamento(orcamento: Orcamento): Observable<Orcamento> {
-    return this.http.put<Orcamento>('http://localhost:8088/api/orcamento/' + orcamento.id, orcamento)
+    return this.http.put<Orcamento>(this.baseUrl + orcamento.id, orcamento)
 
   }
 

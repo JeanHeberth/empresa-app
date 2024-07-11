@@ -10,10 +10,10 @@ export class Projeto {
   valorProjeto: number
 
   // @ts-ignore
-  dataInicio: Date;
+  dataInicio: string;
 
   // @ts-ignore
-  dataFinal: Date;
+  dataFinal: string;
 
   // @ts-ignore
   idDepartamento: number;

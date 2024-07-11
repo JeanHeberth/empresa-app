@@ -7,17 +7,21 @@ import * as $ from 'jquery';
 import {FooterComponent} from "./template/footer/footer.component";
 import {HomeComponent} from "./home/home.component";
 import {EnderecoFormComponent} from "./empresa/endereco-form/endereco-form.component";
+import {NgxMaskDirective, NgxMaskPipe} from "ngx-mask";
+import {CurrencyMaskModule} from "ng2-currency-mask";
+import {DatePipe} from "@angular/common";
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavbarComponent, SidebarComponent, FooterComponent, HomeComponent, RouterOutlet, EnderecoFormComponent],
+  imports: [NavbarComponent, SidebarComponent, FooterComponent, HomeComponent,
+    RouterOutlet, EnderecoFormComponent, NgxMaskDirective, NgxMaskPipe, CurrencyMaskModule, DatePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 
   })
 export class AppComponent implements AfterViewInit {
-  title = 'empresa-app';
 
   ngAfterViewInit() {
     (function ($) {

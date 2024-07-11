@@ -26,6 +26,7 @@
           <label for="cep">CEP:</label>
           <input id="cep" type="text"
                  class="form-control"
+                 mask="00000-000"
                  [(ngModel)]="endereco.cep"
                  name="cep" (input)="onCepChange()" required/>
           <div>
