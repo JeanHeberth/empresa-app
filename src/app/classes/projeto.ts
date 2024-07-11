@@ -17,4 +17,6 @@ export class Projeto {
 
   // @ts-ignore
   idDepartamento: number;
+  // @ts-ignore
+  nomeDepartamento: string
 }

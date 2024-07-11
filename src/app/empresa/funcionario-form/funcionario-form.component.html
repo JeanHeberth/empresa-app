@@ -22,12 +22,12 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="nome">Nome</label>
+          <label for="nome">Matricula</label>
           <input type="text"
                  class="form-control"
                  id="nome"
                  name="nome"
-                 [(ngModel)]="funcionario.nome"
+                 [(ngModel)]="funcionario.matricula"
                  placeholder="Nome" required>
         </div>
       </div>
@@ -39,26 +39,14 @@
                  class="form-control"
                  id="email"
                  name="email"
-                 placeholder="email"
-                 [(ngModel)]="funcionario.email" required>
+                 placeholder="email corporativo"
+                 [(ngModel)]="funcionario.emailCorporativo" required>
         </div>
       </div>
     </div>
 
 
     <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="cpf">CPF</label>
-          <input type="text"
-                 class="form-control"
-                 id="cpf" name="cpf"
-                 mask="000.000.000-00"
-                 placeholder="CPF"
-                 [(ngModel)]="funcionario.cpf" required>
-        </div>
-      </div>
-
       <div class="col-md-6">
         <div class="form-group">
           <label for="cargo">Cargo</label>
@@ -70,12 +58,10 @@
                  [(ngModel)]="funcionario.cargo" required>
         </div>
       </div>
-    </div>
 
-    <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="salario">Salario</label>
+          <label for="salario">Salário</label>
           <input type="text"
                  class="form-control"
                  id="salario"
@@ -90,45 +76,16 @@
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="telefone">Telefone</label>
-          <input type="text" class="form-control"
-                 id="telefone"
-                 prefix="+55 "
-                 mask="00 00000-0000"
-                 name="telefone"
-                 [(ngModel)]="funcionario.telefone"
-                 placeholder="(99) 99999-9999"
-                 required>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="dataNascimento">Data de Nascimento</label>
+          <label for="dataNascimento">Data de Admissão</label>
           <input type="date"
                  class="form-control"
                  id="dataNascimento"
                  name="dataNascimento"
                  placeholder="Data de Nascimento"
-                 [(ngModel)]="funcionario.dataNascimento" required>
+                 [(ngModel)]="funcionario.dataAdmissao" required>
         </div>
       </div>
 
-      <div class="col-md-6">
-        <label for="sexo">Sexo</label>
-        <input type="text"
-               class="form-control"
-               id="sexo"
-               name="sexo"
-               placeholder="Sexo"
-               [(ngModel)]="funcionario.sexo" required>
-      </div>
-    </div>
-
-
-    <div class="row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="idSupervisor">Supervisor</label>
@@ -140,24 +97,12 @@
                  [(ngModel)]="funcionario.idSupervisor" required>
         </div>
       </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="idEndereco">Endereco</label>
-          <input type="text"
-                 class="form-control"
-                 id="idEndereco"
-                 name="idEndereco"
-                 placeholder="ID do Endereco"
-                 [(ngModel)]="funcionario.idEndereco" required>
-        </div>
-      </div>
     </div>
 
     <div class="row">
       <div class="col-md-6">
-        <button type="submit" *ngIf="!funcionario.id" class="btn btn-success" >
-          <i class="fa fa-save"  *ngIf="success"></i> Salvar
+        <button type="submit" *ngIf="!funcionario.id" class="btn btn-success">
+          <i class="fa fa-save" *ngIf="success"></i> Salvar
         </button>
 
         <button type="submit" class="btn btn-primary ml-1" *ngIf="funcionario.id">
@@ -170,7 +115,6 @@
 
       </div>
     </div>
-
 
 
   </form>

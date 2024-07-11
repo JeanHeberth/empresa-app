@@ -7,6 +7,7 @@ import {ProjetoService} from "../../services/projeto.service";
 import {Observable} from "rxjs";
 import {NgxMaskDirective} from "ngx-mask";
 import {CurrencyMaskModule} from "ng2-currency-mask";
+import {data} from "jquery";
 
 @Component({
   selector: 'app-projeto-form',
@@ -92,4 +93,6 @@ export class ProjetoFormComponent implements OnInit {
   voltaParaPaginaDeListagem() {
     this.router.navigate(['/projeto-lista']);
   }
+
+  protected readonly data = data;
 }

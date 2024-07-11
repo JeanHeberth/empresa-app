@@ -17,4 +17,7 @@ export class Orcamento {
 
   // @ts-ignore
   idDepartamento: number;
+
+  // @ts-ignore
+  nomeDepartamento: string;
 }
