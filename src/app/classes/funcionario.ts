@@ -18,9 +18,11 @@ export class Funcionario {
   // @ts-ignore
   idSupervisor: number;
   // @ts-ignore
-  nomeSupervisor: string;
+  idSupervisor: string;
   // @ts-ignore
-  pessoaNome: string
+  nomePessoa: string
+  // @ts-ignore
+  nomeSupervisor: string
 
 
 }
