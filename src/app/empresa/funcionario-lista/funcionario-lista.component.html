@@ -38,13 +38,14 @@
           <th>Cargo</th>
           <th>Salário</th>
           <th>Supervisor</th>
+          <th>Opções</th>
         </tr>
         </thead>
 
         <tbody class="">
         <tr *ngFor="let funcionario of funcionarios">
           <td>{{ funcionario.id }}</td>
-          <td>{{ funcionario.pessoaNome }}</td>
+          <td>{{ funcionario.nomePessoa }}</td>
           <td>{{ funcionario.matricula }}</td>
           <td>{{ funcionario.dataAdmissao }}</td>
           <td>{{ funcionario.cargo }}</td>
