@@ -96,28 +96,18 @@ export class FuncionarioFormComponent implements OnInit {
   }
 
   async onNomePorCpf() {
-    const cpf = (document.getElementById('cpf') as HTMLInputElement).value;
-    if (cpf) {
-      this.funcionarioService.buscarNomePorCpf(cpf).subscribe(
-        response => {
-          if (response) {
-            // @ts-ignore
-            this.funcionario.nome = response[0].nome;
-            // @ts-ignore
-            console.log(this.funcionario.nome = response[0].nome)
-            // Ajuste aqui para pegar o nome correto
-          } else {
-            this.funcionario.nome = ''; // Limpa o campo se não houver resultado
-          }
-        },
-        error => {
-          console.error('Erro ao buscar o funcionário', error);
-          this.funcionario.nome = ''; // Limpa o campo em caso de erro
-        }
-      );
-    }
 
-}
+    if (!this.funcionario.cpf) {
+      this.clearFuncionarioFields();
+      this.isReadonly = false;
+      return;
+    }
+    const data = await this.funcionarioService.buscarNomePorCpf(this.funcionario.cpf).toPromise();
+    if (data) {
+      // @ts-ignore
+      this.funcionario.nome = data[0].nome;
+    }
+  }
 
 
   voltaParaPaginaDeListagem() {
@@ -126,4 +116,8 @@ export class FuncionarioFormComponent implements OnInit {
   }
 
 
+  private clearFuncionarioFields() {
+    this.funcionario.nome = '';
+    this.isReadonly = true;
+  }
 }
