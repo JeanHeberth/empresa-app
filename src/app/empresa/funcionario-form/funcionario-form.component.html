@@ -20,29 +20,34 @@
     </div>
 
     <div class="row">
+
       <div class="col-md-6">
         <div class="form-group">
-          <label for="nome">Matricula</label>
+          <label for="cpf">CPF do Funcionário</label>
           <input type="text"
                  class="form-control"
-                 id="nome"
-                 name="nome"
-                 [(ngModel)]="funcionario.matricula"
-                 placeholder="Nome" required>
+                 id="cpf"
+                 name="cpf"
+                 placeholder="CPF do Funcionário"
+                 [(ngModel)]="funcionario.cpf"
+                (blur)="onNomePorCpf()" required/>
+
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="nome">Nome</label>
           <input type="text"
                  class="form-control"
-                 id="email"
-                 name="email"
-                 placeholder="email corporativo"
-                 [(ngModel)]="funcionario.emailCorporativo" required>
+                 id="nome"
+                 name="nome"
+                 placeholder="Nome"
+                 [(ngModel)]="funcionario.nome" required>
         </div>
       </div>
+
+
     </div>
 
 
@@ -97,6 +102,36 @@
                  [(ngModel)]="funcionario.idSupervisor" required>
         </div>
       </div>
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="matricula">Matricula</label>
+            <input type="text"
+                   class="form-control"
+                   id="matricula"
+                   name="matricula"
+                   [(ngModel)]="funcionario.matricula"
+                   placeholder="Matricula" required>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text"
+                   class="form-control"
+                   id="email"
+                   name="email"
+                   placeholder="email corporativo"
+                   [(ngModel)]="funcionario.emailCorporativo" required>
+          </div>
+        </div>
+      </div>
+
+
     </div>
 
     <div class="row">

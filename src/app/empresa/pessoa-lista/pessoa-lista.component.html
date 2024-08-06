@@ -1,6 +1,6 @@
-<h1 class="mt-4">Listas de funcionários</h1>
+<h1 class="mt-4">Lista de Pessoa</h1>
 <ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item active">Funcionários</li>
+  <li class="breadcrumb-item active">Pessoa</li>
 </ol>
 
 <div class="container">
@@ -31,42 +31,44 @@
       <table class="table table-hover">
         <thead>
         <tr>
-          <th>ID</th>
           <th>Nome</th>
-          <th>Matricula</th>
-          <th>Data de Admissão</th>
-          <th>Cargo</th>
-          <th>Salário</th>
-          <th>Supervisor</th>
+          <th>Email</th>
+          <th>CPF</th>
+          <th>RG</th>
+          <th>Telefone</th>
+          <th>Endereço</th>
           <th>Opções</th>
         </tr>
         </thead>
 
         <tbody class="">
-        <tr *ngFor="let funcionario of funcionarios">
-          <td>{{ funcionario.id }}</td>
-          <td>{{ funcionario.nome }}</td>
-          <td>{{ funcionario.matricula }}</td>
-          <td>{{ funcionario.dataAdmissao }}</td>
-          <td>{{ funcionario.cargo }}</td>
-          <td>{{ funcionario.salario }}</td>
-          <td>{{ funcionario.nomeSupervisor }}</td>
-          <td>
+        <tr *ngFor="let pessoa of pessoas">
+          <td>{{ pessoa.nome }}</td>
+          <td>{{ pessoa.email }}</td>
+          <td>{{ pessoa.cpf }}</td>
+          <td>{{ pessoa.rg }}</td>
+          <td>{{ pessoa.telefone }}</td>
+          <td>{{ pessoa.idEndereco }}</td>
 
-            <button class="btn btn-warning" routerLink="/funcionario-form/{{ funcionario.id }}">
+          <td>
+            <button class="btn btn-warning" routerLink="/endereco-form/{{ pessoa.id }}">
               <i class="fa-solid fa-square-pen"></i>
             </button>
 
-            <button class="btn btn-danger ml-1" (click)="preparaDelecao(funcionario)"
+            <button class="btn btn-danger ml-1"
+                    (click)="preparaDelecao(pessoa)"
                     data-bs-toggle="modal"
                     data-bs-target="#modalDelecao">
               <i class="fa-solid fa-trash-can"></i>
             </button>
           </td>
+
+
         </tr>
         </tbody>
       </table>
     </div>
+
   </div>
 
   <!-- Modal de exclusão -->
@@ -78,18 +80,19 @@
           <h4>Confirmação</h4>
         </div>
 
-        <div class="modal-body" *ngIf="funcionarioSelecionado">
-          Deseja realmente apagar o funcinário {{ funcionarioSelecionado.nome}} ?
+        <div class="modal-body">
+          Deseja realmente apagar a pessoa
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="deletarFuncionario()">
-            Confirmar
+          <button type="button" class="btn btn-success" (click)="deletarPessoa()" data-bs-dismiss="modal">Confirmar
           </button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>
 
       </div>
     </div>
+
+
   </div>
 </div>
