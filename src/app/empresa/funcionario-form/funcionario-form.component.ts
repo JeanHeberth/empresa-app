@@ -33,6 +33,10 @@ export class FuncionarioFormComponent implements OnInit {
   // @ts-ignore
   id: number;
 
+
+  isReadonly: boolean = false;
+
+
   constructor(private funcionarioService: FuncionarioService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
@@ -91,9 +95,35 @@ export class FuncionarioFormComponent implements OnInit {
     }
   }
 
+  async onNomePorCpf() {
+    const cpf = (document.getElementById('cpf') as HTMLInputElement).value;
+    if (cpf) {
+      this.funcionarioService.buscarNomePorCpf(cpf).subscribe(
+        response => {
+          if (response) {
+            // @ts-ignore
+            this.funcionario.nome = response[0].nome;
+            // @ts-ignore
+            console.log(this.funcionario.nome = response[0].nome)
+            // Ajuste aqui para pegar o nome correto
+          } else {
+            this.funcionario.nome = ''; // Limpa o campo se não houver resultado
+          }
+        },
+        error => {
+          console.error('Erro ao buscar o funcionário', error);
+          this.funcionario.nome = ''; // Limpa o campo em caso de erro
+        }
+      );
+    }
+
+}
+
+
   voltaParaPaginaDeListagem() {
     this.success = false;
     this.router.navigate(['/funcionario-lista']);
   }
+
 
 }

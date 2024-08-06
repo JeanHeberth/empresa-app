@@ -17,12 +17,16 @@ export class Funcionario {
   dataAdmissao: string;
   // @ts-ignore
   idSupervisor: number;
+
   // @ts-ignore
-  idSupervisor: string;
-  // @ts-ignore
-  nomePessoa: string
+  cpf: string;
+
+
+
   // @ts-ignore
   nomeSupervisor: string
+
+
 
 
 }
