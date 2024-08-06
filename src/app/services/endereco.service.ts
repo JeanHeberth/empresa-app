@@ -9,30 +9,33 @@ import {map} from "rxjs/operators";
 })
 export class EnderecoService {
 
+  private apiUrl = 'http://localhost:8088/api/endereco'
+
+
   constructor(endereco: Endereco, private http: HttpClient) {
   }
 
   salvarEndereco(endereco: Endereco): Observable<Endereco> {
     // @ts-ignore
-    return this.http.post('http://localhost:8088/api/endereco', endereco);
+    return this.http.post(`${this.apiUrl}/`, endereco);
   }
 
   listarEnderecos(): Observable<Endereco[]> {
-    return this.http.get<Endereco[]>('http://localhost:8088/api/endereco');
+    return this.http.get<Endereco[]>(`${this.apiUrl}`);
   }
 
   encontrarEnderecoPorId(id: number): Observable<Endereco> {
-    return this.http.get<Endereco>('http://localhost:8088/api/endereco/' + id);
+    return this.http.get<Endereco>(`${this.apiUrl}/` + id);
 
   }
 
   atualizarEndereco(endereco: Endereco): Observable<Endereco> {
     // @ts-ignore
-    return this.http.put('http://localhost:8088/api/endereco/' + endereco.id, endereco);
+    return this.http.put(`${this.apiUrl}/` + endereco.id, endereco);
   }
 
   excluirEndereco(id: number): Observable<void> {
-    return this.http.delete<void>('http://localhost:8088/api/endereco/' + id);
+    return this.http.delete<void>(`${this.apiUrl}/` + id);
   }
 
   buscarCep(cep: string): Observable<any> {
