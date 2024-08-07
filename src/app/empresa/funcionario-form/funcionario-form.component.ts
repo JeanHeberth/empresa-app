@@ -105,7 +105,8 @@ export class FuncionarioFormComponent implements OnInit {
     const data = await this.funcionarioService.buscarNomePorCpf(this.funcionario.cpf).toPromise();
     if (data) {
       // @ts-ignore
-      this.funcionario.nome = data[0].nome;
+      this.funcionario.nomePessoa = data[0].nomePessoa;
+      this.isReadonly = true;
     }
   }
 
@@ -117,7 +118,7 @@ export class FuncionarioFormComponent implements OnInit {
 
 
   private clearFuncionarioFields() {
-    this.funcionario.nome = '';
+    this.funcionario.nomePessoa = '';
     this.isReadonly = true;
   }
 }

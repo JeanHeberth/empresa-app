@@ -45,7 +45,7 @@
         <tbody class="">
         <tr *ngFor="let funcionario of funcionarios">
           <td>{{ funcionario.id }}</td>
-          <td>{{ funcionario.nome }}</td>
+          <td>{{ funcionario.nomePessoa }}</td>
           <td>{{ funcionario.matricula }}</td>
           <td>{{ funcionario.dataAdmissao }}</td>
           <td>{{ funcionario.cargo }}</td>
@@ -79,7 +79,7 @@
         </div>
 
         <div class="modal-body" *ngIf="funcionarioSelecionado">
-          Deseja realmente apagar o funcinário {{ funcionarioSelecionado.nome}} ?
+          Deseja realmente apagar o funcinário {{ funcionarioSelecionado.nomePessoa}} ?
         </div>
 
         <div class="modal-footer">

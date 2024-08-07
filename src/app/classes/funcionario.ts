@@ -4,7 +4,7 @@ export class Funcionario {
   // @ts-ignore
   id: number;
   // @ts-ignore
-  nome: string;
+  nomePessoa: string;
   // @ts-ignore
   matricula: string;
   // @ts-ignore
