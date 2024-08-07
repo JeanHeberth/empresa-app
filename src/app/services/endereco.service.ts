@@ -17,7 +17,7 @@ export class EnderecoService {
 
   salvarEndereco(endereco: Endereco): Observable<Endereco> {
     // @ts-ignore
-    return this.http.post(`${this.apiUrl}/`, endereco);
+    return this.http.post(`${this.apiUrl}`, endereco);
   }
 
   listarEnderecos(): Observable<Endereco[]> {
