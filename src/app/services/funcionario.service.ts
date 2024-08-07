@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Funcionario} from "../classes/funcionario";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -42,4 +42,11 @@ export class FuncionarioService {
   buscarNomePorCpf(cpf: string): Observable<Funcionario> {
     return this.http.get<any>(`${this.apiUrl}/cpf/` + cpf);
   }
+
+  generateMatricula(dataAdmissao: string, cpf: string): Observable<Funcionario> {
+    const params = new HttpParams()
+      .set('dataAdmissao', dataAdmissao)
+      .set('cpf', cpf);
+    // @ts-ignore
+    return this.http.get<{ matricula: string }>(`${this.apiUrl}/generate/matricula`, { params });}
 }

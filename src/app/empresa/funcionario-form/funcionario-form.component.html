@@ -30,7 +30,7 @@
                  name="cpf"
                  placeholder="CPF do Funcionário"
                  [(ngModel)]="funcionario.cpf"
-                (blur)="onNomePorCpf()" required/>
+                 (blur)="onNomePorCpf()" required/>
 
         </div>
       </div>
@@ -87,7 +87,9 @@
                  id="dataAdmissao"
                  name="dataAdmissao"
                  placeholder="Data de Admissao"
-                 [(ngModel)]="funcionario.dataAdmissao" required>
+                 [(ngModel)]="funcionario.dataAdmissao" required
+                 (blur)="onDataAdmissaoChange()"
+         />
         </div>
       </div>
 
