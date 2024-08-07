@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {Funcionario} from "../../classes/funcionario";
 import {Observable} from "rxjs";
 import {ActivatedRoute, Params, Router, RouterLink} from "@angular/router";
@@ -8,6 +8,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {NgxMaskDirective} from "ngx-mask";
 import {NgxCurrencyDirective} from "ngx-currency";
 import {CurrencyMaskModule} from "ng2-currency-mask";
+import {data} from "jquery";
 
 @Component({
   selector: 'app-funcionario-form',
@@ -39,9 +40,13 @@ export class FuncionarioFormComponent implements OnInit {
 
   constructor(private funcionarioService: FuncionarioService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private fb: FormBuilder) {
     this.funcionario = new Funcionario();
+
+
   }
+
 
   ngOnInit() {
     let params: Observable<Params> = this.activatedRoute.params
@@ -59,7 +64,10 @@ export class FuncionarioFormComponent implements OnInit {
 
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit(form
+             :
+             NgForm
+  ) {
     if (this.id) {
       this.funcionarioService
         .atualizarFuncionario(this.funcionario)
@@ -110,6 +118,45 @@ export class FuncionarioFormComponent implements OnInit {
     }
   }
 
+  async onDataAdmissaoChange() {
+
+    if (!this.funcionario.cpf || !this.funcionario.dataAdmissao) {
+      this.clearMatriculaField();
+      this.isReadonly = false;
+      return;
+    }
+
+    try {
+      const data = await this.funcionarioService.generateMatricula(this.funcionario.dataAdmissao, this.funcionario.cpf).toPromise();
+      console.log("Data convertida:", data)
+      if (data) {
+        // @ts-ignore
+        this.funcionario.matricula = data.matricula;
+        this.isReadonly = true;
+        // @ts-ignore
+      }
+    } catch (error) {
+      console.error('Error generating matricula', error);
+
+
+    }
+  }
+
+  formatDate(date: string): string | null {
+    const dateParts = date.split('/');
+    if (dateParts.length === 3) {
+      const [day, month, year] = dateParts;
+      if (day.length === 2 && month.length === 2 && year.length === 4) {
+        return `${year}-${month}-${day}`;
+      }
+    }
+    return null;
+  }
+
+  clearMatriculaField() {
+    this.funcionario.matricula = '';
+  }
+
 
   voltaParaPaginaDeListagem() {
     this.success = false;
@@ -117,7 +164,7 @@ export class FuncionarioFormComponent implements OnInit {
   }
 
 
-  private clearFuncionarioFields() {
+  clearFuncionarioFields() {
     this.funcionario.nomePessoa = '';
     this.isReadonly = true;
   }
