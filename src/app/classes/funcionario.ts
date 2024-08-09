@@ -19,12 +19,22 @@ export class Funcionario {
   idSupervisor: number;
 
   // @ts-ignore
-  cpf: string;
-
-
+  nomeDepartamento: string;
 
   // @ts-ignore
+  idDepartamento: number
+
+  // @ts-ignore
+  cpf: string;
+  // @ts-ignore
+
   nomeSupervisor: string
+
+  // @ts-ignore
+  supervisorId: string;
+
+  // @ts-ignore
+  matriculaServidor: string;
 
 
 
