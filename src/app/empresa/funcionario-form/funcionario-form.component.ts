@@ -41,7 +41,7 @@ export class FuncionarioFormComponent implements OnInit {
   constructor(private funcionarioService: FuncionarioService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private fb: FormBuilder) {
+             ) {
     this.funcionario = new Funcionario();
 
 
@@ -64,10 +64,7 @@ export class FuncionarioFormComponent implements OnInit {
 
   }
 
-  onSubmit(form
-             :
-             NgForm
-  ) {
+  onSubmit(form:NgForm) {
     if (this.id) {
       this.funcionarioService
         .atualizarFuncionario(this.funcionario)
@@ -114,6 +111,21 @@ export class FuncionarioFormComponent implements OnInit {
     if (data) {
       // @ts-ignore
       this.funcionario.nomePessoa = data[0].nomePessoa;
+      this.isReadonly = true;
+    }
+  }
+
+  async onMatriculaSupervisor(){
+
+    if (!this.funcionario.matriculaSupervisor) {
+      this.clearMatriculaField();
+      this.isReadonly = false;
+      return;
+    }
+    const data = await this.funcionarioService.buscarMatriculaSupervisor(this.funcionario.matriculaSupervisor).toPromise();
+    if (data) {
+      // @ts-ignore
+      this.funcionario.nomeSupervisor = data.nomeSupervisor;
       this.isReadonly = true;
     }
   }

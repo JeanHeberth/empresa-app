@@ -29,15 +29,12 @@
   <div class="row">
     <div class="col-md-12">
       <table class="table table-hover">
-        <thead class="table-header">
+        <thead>
         <tr>
-          <th>ID</th>
           <th>Nome</th>
           <th>Matricula</th>
-          <th>Data de Admissão</th>
           <th>Cargo</th>
-          <th>Salário</th>
-          <th >Supervisor</th>
+          <th>Supervisor</th>
           <th>Departamento</th>
           <th>Opções</th>
         </tr>
@@ -45,12 +42,12 @@
 
         <tbody class="">
         <tr *ngFor="let funcionario of funcionarios">
-          <td>{{ funcionario.id }}</td>
+          <!--          <td>{{ funcionario.id }}</td>-->
           <td>{{ funcionario.nomePessoa }}</td>
           <td>{{ funcionario.matricula }}</td>
-          <td>{{ funcionario.dataAdmissao }}</td>
+          <!--          <td>{{ funcionario.dataAdmissao }}</td>-->
           <td>{{ funcionario.cargo }}</td>
-          <td>{{ funcionario.salario }}</td>
+          <!--          <td>{{ funcionario.salario }}</td>-->
           <td>{{ funcionario.nomeSupervisor }}</td>
           <td>{{ funcionario.nomeDepartamento }}</td>
           <td>
@@ -81,7 +78,7 @@
         </div>
 
         <div class="modal-body" *ngIf="funcionarioSelecionado">
-          Deseja realmente apagar o funcinário {{ funcionarioSelecionado.nomePessoa}} ?
+          Deseja realmente apagar o funcinário {{ funcionarioSelecionado.nomePessoa }} ?
         </div>
 
         <div class="modal-footer">

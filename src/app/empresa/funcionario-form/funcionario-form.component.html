@@ -43,7 +43,8 @@
                  id="nome"
                  name="nome"
                  placeholder="Nome"
-                 [(ngModel)]="funcionario.nomePessoa" required>
+                 [(ngModel)]="funcionario.nomePessoa" required
+                 readonly/>
         </div>
       </div>
 
@@ -102,7 +103,7 @@
                  id="matricula"
                  name="matricula"
                  [(ngModel)]="funcionario.matricula"
-                 placeholder="Matricula" required>
+                 placeholder="Matricula" required readonly>
         </div>
       </div>
     </div>
@@ -111,13 +112,15 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="idSupervisor">Matricula do Supervisor</label>
+          <label for="matriuclaSupervisor">Matricula do Supervisor</label>
           <input type="text"
                  class="form-control"
-                 id="idSupervisor"
-                 name="idSupervisor"
+                 id="matriuclaSupervisor"
+                 name="matriuclaSupervisor"
                  placeholder="Matricula do Supervisor"
-                 [(ngModel)]="funcionario.matriculaServidor" required>
+                 [(ngModel)]="funcionario.matriculaSupervisor" required
+                 (blur)="onMatriculaSupervisor()"
+          />
         </div>
       </div>
 
@@ -129,7 +132,8 @@
                  id="nomeSupervisor"
                  name="nomeSupervisor"
                  placeholder="Nome do Supervisor"
-                 [(ngModel)]="funcionario.nomeSupervisor" required>
+                 [(ngModel)]="funcionario.nomeSupervisor" required
+                 readonly/>
         </div>
       </div>
     </div>
