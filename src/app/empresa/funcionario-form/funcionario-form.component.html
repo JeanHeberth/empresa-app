@@ -89,7 +89,7 @@
                  placeholder="Data de Admissao"
                  [(ngModel)]="funcionario.dataAdmissao" required
                  (blur)="onDataAdmissaoChange()"
-         />
+          />
         </div>
       </div>
 
@@ -106,7 +106,6 @@
       </div>
 
       <div class="row">
-
         <div class="col-md-6">
           <div class="form-group">
             <label for="matricula">Matricula</label>
@@ -133,7 +132,20 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="departamento">Departamento</label>
+            <input type="text"
+                   class="form-control"
+                   id="departamento"
+                   name="departamento"
+                   [(ngModel)]="funcionario.idDepartamento"
+                   placeholder="Departamento" required>
+          </div>
+        </div>
 
+      </div>
     </div>
 
     <div class="row">

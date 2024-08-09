@@ -38,6 +38,7 @@
           <th>Cargo</th>
           <th>Salário</th>
           <th>Supervisor</th>
+          <th>Departamento</th>
           <th>Opções</th>
         </tr>
         </thead>
@@ -51,6 +52,7 @@
           <td>{{ funcionario.cargo }}</td>
           <td>{{ funcionario.salario }}</td>
           <td>{{ funcionario.nomeSupervisor }}</td>
+          <td>{{ funcionario.nomeDepartamento }}</td>
           <td>
 
             <button class="btn btn-warning" routerLink="/funcionario-form/{{ funcionario.id }}">
