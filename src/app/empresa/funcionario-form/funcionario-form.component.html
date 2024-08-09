@@ -78,7 +78,9 @@
                  required>
         </div>
       </div>
+    </div>
 
+    <div class="row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="dataAdmissao">Data de Admissão</label>
@@ -88,63 +90,73 @@
                  name="dataAdmissao"
                  placeholder="Data de Admissao"
                  [(ngModel)]="funcionario.dataAdmissao" required
-                 (blur)="onDataAdmissaoChange()"
-          />
+                 (blur)="onDataAdmissaoChange()"/>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="idSupervisor">Supervisor</label>
+          <label for="matricula">Matricula Funcionário</label>
+          <input type="text"
+                 class="form-control"
+                 id="matricula"
+                 name="matricula"
+                 [(ngModel)]="funcionario.matricula"
+                 placeholder="Matricula" required>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="idSupervisor">Matricula do Supervisor</label>
           <input type="text"
                  class="form-control"
                  id="idSupervisor"
                  name="idSupervisor"
-                 placeholder="ID do Supervisor"
-                 [(ngModel)]="funcionario.idSupervisor" required>
+                 placeholder="Matricula do Supervisor"
+                 [(ngModel)]="funcionario.matriculaServidor" required>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="matricula">Matricula</label>
-            <input type="text"
-                   class="form-control"
-                   id="matricula"
-                   name="matricula"
-                   [(ngModel)]="funcionario.matricula"
-                   placeholder="Matricula" required>
-          </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="nomeSupervisor">Nome do Supervisor</label>
+          <input type="text"
+                 class="form-control"
+                 id="nomeSupervisor"
+                 name="nomeSupervisor"
+                 placeholder="Nome do Supervisor"
+                 [(ngModel)]="funcionario.nomeSupervisor" required>
         </div>
+      </div>
+    </div>
 
-
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text"
-                   class="form-control"
-                   id="email"
-                   name="email"
-                   placeholder="email corporativo"
-                   [(ngModel)]="funcionario.emailCorporativo" required>
-          </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text"
+                 class="form-control"
+                 id="email"
+                 name="email"
+                 placeholder="email corporativo"
+                 [(ngModel)]="funcionario.emailCorporativo" required>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="departamento">Departamento</label>
-            <input type="text"
-                   class="form-control"
-                   id="departamento"
-                   name="departamento"
-                   [(ngModel)]="funcionario.idDepartamento"
-                   placeholder="Departamento" required>
-          </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="departamento">Departamento</label>
+          <input type="text"
+                 class="form-control"
+                 id="departamento"
+                 name="departamento"
+                 [(ngModel)]="funcionario.idDepartamento"
+                 placeholder="Departamento" required>
         </div>
-
       </div>
     </div>
 

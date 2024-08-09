@@ -33,6 +33,9 @@ export class Funcionario {
   // @ts-ignore
   supervisorId: string;
 
+  // @ts-ignore
+  matriculaServidor: string;
+
 
 
 
