@@ -125,7 +125,7 @@ export class FuncionarioFormComponent implements OnInit {
     const data = await this.funcionarioService.buscarMatriculaSupervisor(this.funcionario.matriculaSupervisor).toPromise();
     if (data) {
       // @ts-ignore
-      this.funcionario.nomeSupervisor = data.nomeSupervisor;
+      this.funcionario.nomeSupervisor = data.nomePessoa;
       this.isReadonly = true;
     }
   }
