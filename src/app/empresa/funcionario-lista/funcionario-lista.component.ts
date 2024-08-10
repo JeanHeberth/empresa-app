@@ -3,15 +3,19 @@ import {Funcionario} from "../../classes/funcionario";
 import {FuncionarioService} from "../../services/funcionario.service";
 import {Router, RouterLink} from "@angular/router";
 import {NgForOf, NgIf} from "@angular/common";
+import {CurrencyMaskModule} from "ng2-currency-mask";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-funcionario-lista',
   standalone: true,
-  imports: [
-    RouterLink,
-    NgIf,
-    NgForOf
-  ],
+    imports: [
+        RouterLink,
+        NgIf,
+        NgForOf,
+        CurrencyMaskModule,
+        ReactiveFormsModule
+    ],
   templateUrl: './funcionario-lista.component.html',
   styleUrl: './funcionario-lista.component.css'
 })

@@ -49,4 +49,9 @@ export class FuncionarioService {
       .set('cpf', cpf);
     // @ts-ignore
     return this.http.get<{ matricula: string }>(`${this.apiUrl}/generate/matricula`, { params });}
+
+  buscarMatriculaSupervisor(matriculaSupervisor: string): Observable<Funcionario> {
+    return this.http.get<any>(`${this.apiUrl}/matricula/` + matriculaSupervisor);
+
+  }
 }
