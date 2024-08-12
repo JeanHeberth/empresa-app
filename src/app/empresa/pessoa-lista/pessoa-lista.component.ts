@@ -37,11 +37,12 @@ export class PessoaListaComponent {
     this.pessoaService
       .listarPessoas()
       .subscribe(pessoas => this.pessoas = pessoas)
+
   }
 
 
   novoCadastro() {
-    this.router.navigate(['/form-form']);
+    this.router.navigate(['/pessoa-form']);
   }
 
   preparaPessoa(pessoa: Pessoa) {

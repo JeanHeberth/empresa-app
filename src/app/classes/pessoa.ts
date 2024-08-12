@@ -1,3 +1,5 @@
+import {Endereco} from "./endereco";
+
 export class Pessoa {
 
   // @ts-ignore
@@ -11,13 +13,12 @@ export class Pessoa {
 
   // @ts-ignore
   cpf: string;
-
-  // @ts-ignore
-  rg: string;
-
-  // @ts-ignore
-  idEndereco: string
   // @ts-ignore
   telefone: number;
+  // @ts-ignore
+  dataNascimento: string;
+  // @ts-ignore
+  cidadeEndereco: string;
+  idEndereco: any;
 
 }
