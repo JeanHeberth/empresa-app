@@ -10,6 +10,13 @@ export class PessoaService {
 
   constructor(private http: HttpClient ) { }
 
+
+
+  salvarPessoa(pessoa: Pessoa): Observable<Pessoa> {
+    return this.http.post<Pessoa>('http://localhost:8088/api/pessoa', pessoa)
+  }
+
+
   listarPessoas(): Observable<Pessoa[]> {
     return this.http.get<Pessoa[]>('http://localhost:8088/api/pessoa')
 
