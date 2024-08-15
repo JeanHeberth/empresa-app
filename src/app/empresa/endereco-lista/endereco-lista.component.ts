@@ -39,11 +39,8 @@ export class EnderecoListaComponent implements OnInit {
     this.enderecoService
       .listarEnderecos()
       .subscribe(enderecos => this.enderecos = enderecos)
-
-    this.sseService.getServerSentEvent('http://10.10.0.211:8088/api/stream-endpoint').subscribe((event: MessageEvent) => {
-     this.events.push(event.data)
-    })
   }
+  ///Tesafdas
 
   novoCadastro() {
     this.router.navigate(['/endereco-form']);
