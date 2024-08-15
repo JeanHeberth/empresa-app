@@ -8,29 +8,32 @@ import {Observable} from "rxjs";
 })
 export class DepartamentoService {
 
+  private apiUrl = 'http://10.10.0.211:8088/api/departamento'
+
+
   constructor(departamento: Departamento, private http: HttpClient) {
   }
 
   salvarDepartamento(departamento: Departamento): Observable<Departamento> {
     // @ts-ignore
-    return this.http.post("http://localhost:8088/api/departamento", departamento);
+    return this.http.post(`${this.apiUrl}`, departamento);
   }
 
   atualizarDepartamento(departamento: Departamento): Observable<any> {
     // @ts-ignore
-    return this.http.put("http://localhost:8088/api/departamento/" + departamento.id, departamento);
+    return this.http.put(`${this.apiUrl}` + departamento.id, departamento);
   }
 
   buscarDepartamentos(): Observable<Departamento[]> {
-    return this.http.get<Departamento[]>("http://localhost:8088/api/departamento");
+    return this.http.get<Departamento[]>(`${this.apiUrl}`);
   }
 
   buscarDepartamentoPorId(id: number): Observable<Departamento> {
-    return this.http.get<Departamento>("http://localhost:8088/api/departamento/" + id);
+    return this.http.get<Departamento>(`${this.apiUrl}` + id);
   }
 
   deletarDepartamento(departamento: Departamento) : Observable<any> {
-    return this.http.delete<any>("http://localhost:8088/api/departamento/" + departamento.id);
+    return this.http.delete<any>(`${this.apiUrl}` + departamento.id);
 
   }
 

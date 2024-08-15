@@ -9,7 +9,7 @@ import {Orcamento} from "../classes/orcamento";
 export class OrcamentoService {
 
 
-  private baseUrl = 'http://localhost:8088/api/orcamento';
+  private baseUrl = 'http://10.10.0.211:8088/api/orcamento';
 
 
   constructor(private http: HttpClient ) { }
