@@ -40,7 +40,7 @@ export class EnderecoListaComponent implements OnInit {
       .listarEnderecos()
       .subscribe(enderecos => this.enderecos = enderecos)
   }
-  ///Tesafdas
+  ///Tesafdasfdfadsfsasfsa
 
   novoCadastro() {
     this.router.navigate(['/endereco-form']);
