@@ -5,8 +5,6 @@ import {EnderecoService} from "../../services/endereco.service";
 import {Endereco} from "../../classes/endereco";
 import {FormsModule} from "@angular/forms";
 import {SseService} from "../../services/SseService.service";
-import {DataService} from "../../services/data.service";
-import {data} from "jquery";
 
 @Component({
   selector: 'app-endereco-lista',
@@ -22,6 +20,7 @@ import {data} from "jquery";
 })
 export class EnderecoListaComponent implements OnInit {
   enderecos: Array<Endereco> = [];
+  events: string[] = [];
 
   // @ts-ignore
   mensagemSucesso: string;
@@ -33,16 +32,15 @@ export class EnderecoListaComponent implements OnInit {
 
   constructor(private enderecoService: EnderecoService,
               private router: Router,
-              private dataService: DataService) {
+              private sseService: SseService) {
   }
 
   ngOnInit(): void {
-    this.dataService.getUpdates().subscribe((data: any) => {
-      this.enderecoService
-        .listarEnderecos()
-        .subscribe(enderecos => this.enderecos = enderecos)
-    })
+    this.enderecoService
+      .listarEnderecos()
+      .subscribe(enderecos => this.enderecos = enderecos)
   }
+  ///Tesafdas
 
   novoCadastro() {
     this.router.navigate(['/endereco-form']);
