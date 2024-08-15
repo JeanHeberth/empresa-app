@@ -8,22 +8,25 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PessoaService {
 
+  private apiUrl = 'http://10.10.0.211:8088/api/pessoa'
+
+
   constructor(private http: HttpClient ) { }
 
 
 
   salvarPessoa(pessoa: Pessoa): Observable<Pessoa> {
-    return this.http.post<Pessoa>('http://localhost:8088/api/pessoa', pessoa)
+    return this.http.post<Pessoa>(`${this.apiUrl}`, pessoa)
   }
 
 
   listarPessoas(): Observable<Pessoa[]> {
-    return this.http.get<Pessoa[]>('http://localhost:8088/api/pessoa')
+    return this.http.get<Pessoa[]>(`${this.apiUrl}`)
 
   }
 
   deletarPessoa(pessoaSelecionadad: Pessoa): Observable<Pessoa> {
-    return this.http.delete<Pessoa>(`http://localhost:8088/api/pessoa/${pessoaSelecionadad.id}`)
+    return this.http.delete<Pessoa>(`${this.apiUrl}` +pessoaSelecionadad.id)
 
   }
 }

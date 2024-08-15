@@ -8,26 +8,28 @@ import {Projeto} from "../classes/projeto";
 })
 export class ProjetoService {
 
+  private apiUrl = 'http://10.10.0.211:8088/api/projeto'
+
   constructor(private http: HttpClient ) { }
 
   salvarProjeto(projeto: Projeto): Observable<Projeto> {
-    return this.http.post<Projeto>('http://localhost:8088/api/projeto', projeto)
+    return this.http.post<Projeto>(`${this.apiUrl}`, projeto)
   }
 
   listarProjetos(): Observable <Projeto[]> {
-    return this.http.get<Projeto[]>('http://localhost:8088/api/projeto')
+    return this.http.get<Projeto[]>(`${this.apiUrl}`)
   }
 
   buscarProjetoPorId(id: number): Observable<Projeto> {
-    return this.http.get<Projeto>('http://localhost:8088/api/projeto/' + id)
+    return this.http.get<Projeto>(`${this.apiUrl}` + id)
   }
 
   atualizarProjeto(projeto: Projeto): Observable<Projeto> {
-    return this.http.put<Projeto>('http://localhost:8088/api/projeto/' + projeto.id, projeto)
+    return this.http.put<Projeto>(`${this.apiUrl}` + projeto.id, projeto)
   }
 
   deletarProjeto(projetoSelecionado: Projeto): Observable<Projeto> {
-    return this.http.delete<Projeto>('http://localhost:8088/api/projeto/' + projetoSelecionado.id)
+    return this.http.delete<Projeto>(`${this.apiUrl}` + projetoSelecionado.id)
 
   }
 }

@@ -28,6 +28,7 @@
     "ng2-currency-mask": "^13.0.3",
     "ngx-date-fns": "^11.0.0",
     "ngx-mask": "^17.1.1",
+    "ngx-socket-io": "^4.7.0",
     "pikaday": "^1.8.2",
     "popper.js": "^1.16.1",
     "rxjs": "~7.8.0",
