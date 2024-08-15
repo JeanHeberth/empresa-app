@@ -4,6 +4,7 @@ import {Router, RouterLink} from "@angular/router";
 import {EnderecoService} from "../../services/endereco.service";
 import {Endereco} from "../../classes/endereco";
 import {FormsModule} from "@angular/forms";
+import {SseService} from "../../services/SseService.service";
 
 @Component({
   selector: 'app-endereco-lista',
@@ -19,6 +20,7 @@ import {FormsModule} from "@angular/forms";
 })
 export class EnderecoListaComponent implements OnInit {
   enderecos: Array<Endereco> = [];
+  events: string[] = [];
 
   // @ts-ignore
   mensagemSucesso: string;
@@ -29,13 +31,18 @@ export class EnderecoListaComponent implements OnInit {
   enderecoSelecionado: Endereco;
 
   constructor(private enderecoService: EnderecoService,
-              private router: Router) {
+              private router: Router,
+              private sseService: SseService) {
   }
 
   ngOnInit(): void {
     this.enderecoService
       .listarEnderecos()
       .subscribe(enderecos => this.enderecos = enderecos)
+
+    this.sseService.getServerSentEvent('http://10.10.0.211:8088/api/stream-endpoint').subscribe((event: MessageEvent) => {
+     this.events.push(event.data)
+    })
   }
 
   novoCadastro() {
