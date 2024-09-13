@@ -8,12 +8,14 @@
 
     <div class="row">
       <div class="col-md-12">
-        <!--      <div class="alert alert-success" role="alert">-->
-        <!--        Pessoa salvo com sucesso!-->
-        <!--      </div>-->
-        <!--      <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">-->
-        <!--        {{ erros }}-->
-        <!--      </div>-->
+        <div *ngIf="success == true"
+             class="alert alert-success" role="alert">
+          Pessoa salvo com sucesso!
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{ erro }}
+        </div>
       </div>
     </div>
 
@@ -89,7 +91,7 @@
                  class="form-control"
                  placeholder="Data de Nascimento"
                  [(ngModel)]="pessoa.dataNascimento"
-                 name="endereco" required/>
+                 name="dataNascimento" required/>
         </div>
       </div>
 
@@ -101,6 +103,7 @@
         <button id="salvar"
                 type="submit"
                 class="btn btn-success"
+                [disabled]="pessoaForm.form.invalid"
                 *ngIf="!pessoa.id"
                 (click)="salvarPessoa(pessoaForm)">
           <i class="fa fa-save" *ngIf="success"></i> Salvar
