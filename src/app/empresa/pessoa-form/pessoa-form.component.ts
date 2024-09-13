@@ -22,19 +22,18 @@ import {PessoaService} from "../../services/pessoa.service";
   templateUrl: './pessoa-form.component.html',
   styleUrl: './pessoa-form.component.css'
 })
-export class PessoaFormComponent implements OnInit{
+export class PessoaFormComponent implements OnInit {
   pessoa: Pessoa;
-
   // @ts-ignore
-  erros: null
-
+  errors: null;
   success: boolean = false;
+  // @ts-ignore
+  id: number;
 
 
-
-  constructor( private pessoaService: PessoaService,
-               private router: Router,
-               private activatedRoute: ActivatedRoute,) {
+  constructor(private pessoaService: PessoaService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,) {
     this.pessoa = new Pessoa();
   }
 
@@ -49,15 +48,15 @@ export class PessoaFormComponent implements OnInit{
 
 
   salvarPessoa(form: NgForm) {
-   this.pessoaService.salvarPessoa(this.pessoa)
-     .subscribe(() => {
-       this.success = true;
-       form.reset();
-     });
+    this.pessoaService.salvarPessoa(this.pessoa)
+      .subscribe(() => {
+        this.success = true;
+        form.reset();
+      });
 
   }
 
   atualizarPessoa(pessoaForm: NgForm) {
-    
+
   }
 }

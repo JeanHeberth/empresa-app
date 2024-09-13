@@ -8,12 +8,14 @@
 
     <div class="row">
       <div class="col-md-12">
-        <!--      <div class="alert alert-success" role="alert">-->
-        <!--        Pessoa salvo com sucesso!-->
-        <!--      </div>-->
-        <!--      <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">-->
-        <!--        {{ erros }}-->
-        <!--      </div>-->
+        <div *ngIf="success == true"
+             class="alert alert-success" role="alert">
+          Pessoa salvo com sucesso!
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{ erro }}
+        </div>
       </div>
     </div>
 
@@ -36,6 +38,7 @@
                  type="text"
                  class="form-control"
                  placeholder="CPF"
+                 mask="000.000.000-00"
                  [(ngModel)]="pessoa.cpf"
                  name="cpf"/>
         </div>
@@ -62,6 +65,7 @@
                  type="text"
                  class="form-control"
                  placeholder="Telefone"
+                 mask="(00) 00000-0000"
                  [(ngModel)]="pessoa.telefone"
                  name="telefone"/>
         </div>
@@ -74,7 +78,7 @@
           <label for="nome">Endereço:</label>
           <input id="endereco" type="text"
                  class="form-control"
-                 placeholder="Endereço"
+                 placeholder="ID do endereço"
                  [(ngModel)]="pessoa.idEndereco"
                  name="endereco" required/>
         </div>
@@ -87,7 +91,7 @@
                  class="form-control"
                  placeholder="Data de Nascimento"
                  [(ngModel)]="pessoa.dataNascimento"
-                 name="endereco" required/>
+                 name="dataNascimento" required/>
         </div>
       </div>
 
@@ -99,6 +103,7 @@
         <button id="salvar"
                 type="submit"
                 class="btn btn-success"
+                [disabled]="pessoaForm.form.invalid"
                 *ngIf="!pessoa.id"
                 (click)="salvarPessoa(pessoaForm)">
           <i class="fa fa-save" *ngIf="success"></i> Salvar
