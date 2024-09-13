@@ -36,6 +36,7 @@
                  type="text"
                  class="form-control"
                  placeholder="CPF"
+                 mask="000.000.000-00"
                  [(ngModel)]="pessoa.cpf"
                  name="cpf"/>
         </div>
@@ -62,6 +63,7 @@
                  type="text"
                  class="form-control"
                  placeholder="Telefone"
+                 mask="(00) 00000-0000"
                  [(ngModel)]="pessoa.telefone"
                  name="telefone"/>
         </div>
@@ -74,7 +76,7 @@
           <label for="nome">Endereço:</label>
           <input id="endereco" type="text"
                  class="form-control"
-                 placeholder="Endereço"
+                 placeholder="ID do endereço"
                  [(ngModel)]="pessoa.idEndereco"
                  name="endereco" required/>
         </div>
