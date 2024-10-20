@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PessoaService {
 
-  private apiUrl = 'http://10.10.0.211:8088/api/pessoa'
+  private apiUrl = 'http://localhost:8088/api/pessoa'
 
 
   constructor(private http: HttpClient ) { }

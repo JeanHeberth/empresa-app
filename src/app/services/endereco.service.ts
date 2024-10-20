@@ -9,7 +9,7 @@ import {map} from "rxjs/operators";
 })
 export class EnderecoService {
 
-  private apiUrl = 'http://10.10.0.211:8088/api/endereco'
+  private apiUrl = 'http://localhost:8088/api/endereco'
 
 
   constructor(endereco: Endereco, private http: HttpClient) {

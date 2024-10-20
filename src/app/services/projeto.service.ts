@@ -8,7 +8,7 @@ import {Projeto} from "../classes/projeto";
 })
 export class ProjetoService {
 
-  private apiUrl = 'http://10.10.0.211:8088/api/projeto'
+  private apiUrl = 'http://localhost:8088/api/projeto'
 
   constructor(private http: HttpClient ) { }
 

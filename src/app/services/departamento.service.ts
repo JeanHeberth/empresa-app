@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class DepartamentoService {
 
-  private apiUrl = 'http://10.10.0.211:8088/api/departamento'
+  private apiUrl = 'http://localhost:8088/api/departamento'
 
 
   constructor(departamento: Departamento, private http: HttpClient) {
