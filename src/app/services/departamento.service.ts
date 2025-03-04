@@ -33,7 +33,7 @@ export class DepartamentoService {
   }
 
   deletarDepartamento(departamento: Departamento) : Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}` + departamento.id);
+    return this.http.delete<any>(`${this.apiUrl}/` + departamento.id);
 
   }
 

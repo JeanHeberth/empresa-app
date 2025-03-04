@@ -11,10 +11,9 @@ import {SseService} from "../../services/SseService.service";
   standalone: true,
   imports: [
     NgForOf,
-    NgIf,
     RouterLink,
     FormsModule
-  ],
+],
   templateUrl: './endereco-lista.component.html',
   styleUrl: './endereco-lista.component.css'
 })

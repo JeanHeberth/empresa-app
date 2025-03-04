@@ -16,9 +16,8 @@ import {NgxMaskDirective} from "ngx-mask";
     NgForOf,
     ReactiveFormsModule,
     FormsModule,
-    NgxCurrencyDirective,
     NgxMaskDirective
-  ],
+],
   templateUrl: "./endereco-form.component.html",
   styleUrl: './endereco-form.component.css'
 })

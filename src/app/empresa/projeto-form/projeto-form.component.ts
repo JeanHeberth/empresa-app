@@ -17,9 +17,8 @@ import {data} from "jquery";
     ReactiveFormsModule,
     NgIf,
     NgForOf,
-    NgxMaskDirective,
-    CurrencyMaskModule,
-  ],
+    CurrencyMaskModule
+],
   templateUrl: './projeto-form.component.html',
   styleUrl: './projeto-form.component.css'
 })

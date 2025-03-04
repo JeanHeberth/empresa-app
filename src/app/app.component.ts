@@ -15,8 +15,8 @@ import {DatePipe} from "@angular/common";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavbarComponent, SidebarComponent, FooterComponent, HomeComponent,
-    RouterOutlet, EnderecoFormComponent, NgxMaskDirective, NgxMaskPipe, CurrencyMaskModule, DatePipe],
+  imports: [NavbarComponent, SidebarComponent, FooterComponent,
+    RouterOutlet, CurrencyMaskModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 
